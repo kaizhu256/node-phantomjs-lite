@@ -1,5 +1,6 @@
 #!/bin/sh
 shNpmInstall() {
+  ## this funcition downloads and installs phantomjs and slimerjs
   NODEJS_PLATFORM=$(node -e "process.stdout.write(process.platform)") || return $?
   TMPDIR=$(node -e "process.stdout.write(require('os').tmpdir())") || return $?
   case $NODEJS_PLATFORM in
@@ -44,6 +45,10 @@ shNpmInstall() {
     eval "$SCRIPT" || return $?
     ;;
   esac
+}
+
+shNpmTest() {
+  shNpmInstall
 }
 
 $@
