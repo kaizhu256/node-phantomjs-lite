@@ -1,17 +1,18 @@
 {
   "contributors": [{ "name": "kai zhu", "email": "kaizhu256@gmail.com" }],
-  "description": "lightweight nodejs module which installs phantomjs and slimerjs with no external dependencies",
+  "description": "minimal npm installer for phantomjs and slimerjs with no external dependencies",
   "engines": { "node": ">=0.10.x" },
   "license": "MIT",
   "main": "main.js",
-  "name": "node-headless-browser-lite",
+  "name": "headless-browser-lite",
   "os": ["darwin", "linux"],
   "repository" : {
     "type" : "git",
-    "url" : "https://github.com/kaizhu256/node-node-headless-browser-lite.git"
+    "url" : "https://github.com/kaizhu256/node-headless-browser-lite.git"
   },
   "scripts": {
-    "install": "./install.sh",
+    "install": "./main.sh shNpmInstall",
+    "test": "./main.sh shNpmTest"
   },
-  "version": "2014.9.20-11"
+  "version": "2014.9.20-13"
 }
