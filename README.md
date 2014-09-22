@@ -4,6 +4,10 @@ minimal npm installer for phantomjs and slimerjs with no external dependencies
 
 
 
+## build status [![travis.ci-org build status](https://api.travis-ci.org/kaizhu256/node-headless-browser-lite.svg)](https://travis-ci.org/kaizhu256/node-headless-browser-lite)
+
+
+
 ## quickstart
 ```
 ## install phantomjs and slimerjs into ./node_modules/headless-browser-lite
@@ -26,6 +30,8 @@ require('child_process').spawn(
 
 
 ## description of files
+- .gitignore
+  - git ignore file list
 - .travis.yml
   - travis-ci config file
 - README.md
