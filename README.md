@@ -31,7 +31,7 @@ require('child_process').spawn(
 
 ## description of files
 - .gitignore
-  - git ignore file list
+  - .gitignore file
 - .travis.yml
   - travis-ci config file
 - README.md
