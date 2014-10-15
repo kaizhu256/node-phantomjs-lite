@@ -9,7 +9,7 @@ shNpmInstall() {
     then
       ## download phantomjs
       SCRIPT=":"
-      SCRIPT="$SCRIPT && curl -3fLs -C - -o $TMPDIR/phantomjs-1.9.7-macosx.zip"
+      SCRIPT="$SCRIPT && curl -LSs -C - -o $TMPDIR/phantomjs-1.9.7-macosx.zip"
       SCRIPT="$SCRIPT https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-macosx.zip"
       ## install phantomjs
       SCRIPT="$SCRIPT; tar -xjf $TMPDIR/phantomjs-1.9.7-macosx.zip"
@@ -21,7 +21,7 @@ shNpmInstall() {
     then
       ## download slimerjs
       SCRIPT=":"
-      SCRIPT="$SCRIPT && curl -3fLs -C - -o $TMPDIR/slimerjs-0.9.3-mac.tar.bz2"
+      SCRIPT="$SCRIPT && curl -LSs -C - -o $TMPDIR/slimerjs-0.9.3-mac.tar.bz2"
       SCRIPT="$SCRIPT http://download.slimerjs.org/releases/0.9.3/slimerjs-0.9.3-mac.tar.bz2"
       ## install slimerjs
       SCRIPT="$SCRIPT; tar -xjf $TMPDIR/slimerjs-0.9.3-mac.tar.bz2"
@@ -35,7 +35,7 @@ shNpmInstall() {
     then
       ## download phantomjs
       SCRIPT=":"
-      SCRIPT="$SCRIPT && curl -3fLs -C - -o $TMPDIR/phantomjs-1.9.7-linux-x86_64.tar.bz2"
+      SCRIPT="$SCRIPT && curl -LSs -C - -o $TMPDIR/phantomjs-1.9.7-linux-x86_64.tar.bz2"
       SCRIPT="$SCRIPT https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-x86_64.tar.bz2"
       ## install phantomjs
       SCRIPT="$SCRIPT; tar -xjf $TMPDIR/phantomjs-1.9.7-linux-x86_64.tar.bz2"
@@ -47,7 +47,7 @@ shNpmInstall() {
     then
       ## download slimerjs
       SCRIPT=":"
-      SCRIPT="$SCRIPT && curl -3fLs -C - -o $TMPDIR/slimerjs-0.9.3-linux-x86_64.tar.bz2"
+      SCRIPT="$SCRIPT && curl -LSs -C - -o $TMPDIR/slimerjs-0.9.3-linux-x86_64.tar.bz2"
       SCRIPT="$SCRIPT http://download.slimerjs.org/releases/0.9.3/slimerjs-0.9.3-linux-x86_64.tar.bz2"
       SCRIPT="$SCRIPT && rm -f slimerjs && ln -s slimerjs-0.9.3/slimerjs slimerjs"
       ## install slimerjs

@@ -14,5 +14,5 @@
     "install": "./main.sh shNpmInstall",
     "test": "./main.sh shNpmTest"
   },
-  "version": "2014.9.20-14"
+  "version": "2014.9.20-15"
 }
