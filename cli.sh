@@ -20,10 +20,10 @@ shNpmPostinstall() {
   case $NODEJS_PLATFORM in
   darwin)
     # download and install phantomjs
-    FILE_BIN=phantomjs-1.9.7-macosx/bin/phantomjs
+    FILE_BIN=phantomjs-1.9.8-macosx/bin/phantomjs
     FILE_LINK=phantomjs
-    FILE_TMP=$TMPDIR/phantomjs-1.9.7-macosx.zip
-    FILE_URL=https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-macosx.zip
+    FILE_TMP=$TMPDIR/phantomjs-1.9.8-macosx.zip
+    FILE_URL=https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-macosx.zip
     shDownloadAndInstall
     # download and install slimerjs
     FILE_BIN=slimerjs-0.9.3/slimerjs
@@ -34,10 +34,10 @@ shNpmPostinstall() {
     ;;
   linux)
     # download and install phantomjs
-    FILE_BIN=phantomjs-1.9.7-linux-x86_64/bin/phantomjs
+    FILE_BIN=phantomjs-1.9.8-linux-x86_64/bin/phantomjs
     FILE_LINK=phantomjs
-    FILE_TMP=$TMPDIR/phantomjs-1.9.7-linux-x86_64.tar.bz2
-    FILE_URL=https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-x86_64.tar.bz2
+    FILE_TMP=$TMPDIR/phantomjs-1.9.8-linux-x86_64.tar.bz2
+    FILE_URL=https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2
     shDownloadAndInstall
     # download and install slimerjs
     FILE_BIN=slimerjs-0.9.3/slimerjs
@@ -54,4 +54,38 @@ shNpmTest() {
   printf '\ntesting slimerjs\n' && ./slimerjs test.js || return $?
 }
 
-$@
+shNpmTestPublished() {
+  # this function tests npm published package
+  cd /tmp && rm -fr /tmp/node_modules && npm install $PACKAGE_JSON_NAME || return $?
+  cd /tmp/node_modules/$PACKAGE_JSON_NAME && npm test || return $?
+}
+
+shMain() {
+  # this function is the main program and parses argv
+  # init $CWD
+  CWD=$(pwd) || return $?
+  # init $PACKAGE_JSON_*
+  eval $(node -e "var dict, value;\
+    dict = require('./package.json');
+    console.log(Object.keys(dict).map(function (key) {\
+      value = dict[key];\
+      return typeof value === 'string' ?\
+        'export PACKAGE_JSON_' + key.toUpperCase() + '=' + JSON.stringify(value) : ':';\
+    }).join(';'))") || return $?
+  # init $PATH with $CWD/node_modules/.bin
+  export PATH=$CWD/node_modules/phantomjs-lite:$CWD/node_modules/.bin:$PATH || return $?
+  # init $TMPFILE
+  TMPFILE=/tmp/tmpfile.$(openssl rand -hex 8) || return $?
+  # eval argv
+  $@
+  # init $EXIT_CODE
+  local EXIT_CODE=$? || return $?
+  # restore $CWD
+  cd $CWD || return $?
+  # cleanup $TMPFILE
+  rm -f $TMPFILE || return $?
+  # return $EXIT_CODE
+  return $EXIT_CODE
+}
+# init main routine
+shMain $@

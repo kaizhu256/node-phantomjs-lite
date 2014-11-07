@@ -3,11 +3,11 @@
   "description": "minimal npm installer for phantomjs and slimerjs with no external dependencies",
   "engines": { "node": ">=0.10.x" },
   "license": "MIT",
-  "name": "headless-browser-lite",
+  "name": "phantomjs-lite",
   "os": ["darwin", "linux"],
   "repository" : {
     "type" : "git",
-    "url" : "https://github.com/kaizhu256/node-headless-browser-lite.git"
+    "url" : "https://github.com/kaizhu256/node-phantomjs-lite.git"
   },
   "scripts": {
     "postinstall": "./cli.sh shNpmPostinstall",

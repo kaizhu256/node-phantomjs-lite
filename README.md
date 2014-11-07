@@ -1,19 +1,19 @@
-headless-browser-lite
-=====================
+phantomjs-lite
+==============
 minimal npm installer for phantomjs and slimerjs with no external dependencies
 
 
 
-## build status [![travis.ci-org build status](https://api.travis-ci.org/kaizhu256/node-headless-browser-lite.svg)](https://travis-ci.org/kaizhu256/node-headless-browser-lite)
+## build status [![travis.ci-org build status](https://api.travis-ci.org/kaizhu256/node-phantomjs-lite.svg)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
 
 
 
 ## quickstart
 ```
-# install phantomjs and slimerjs into ./node_modules/headless-browser-lite
-npm install headless-browser-lite
+# install phantomjs and slimerjs into ./node_modules/phantomjs-lite
+npm install phantomjs-lite
 # run phantomjs cli
-./node_modules/headless-browser-lite/phantomjs
+./node_modules/phantomjs-lite/phantomjs
 ```
 
 
@@ -21,10 +21,10 @@ npm install headless-browser-lite
 ## library usage example
 ```
 // spawn a phantomjs process to run the script 'test.js'
-var headless = require('headless-browser-lite');
+var phantomjs = require('phantomjs-lite');
 require('child_process').spawn(
-  headless.__dirname + '/phantomjs',
-  [ headless.__dirname + '/test.js' ],
+  phantomjs.__dirname + '/phantomjs',
+  [ phantomjs.__dirname + '/test.js' ],
   { stdio: 'inherit' }
 );
 ```
