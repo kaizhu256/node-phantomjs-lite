@@ -1,14 +1,17 @@
 #!/bin/sh
 shDownloadAndInstall() {
   # this funcition downloads and installs phantomjs and slimerjs
-  if [ -f $FILE_LINK ]
+  if [ ! -f $FILE_LINK ]
   then
-    return
+    # download phantomjs
+    if [ ! -f $FILE_TMP.downloaded ]
+    then
+      printf "downloading $FILE_URL\n" && curl -#L -C - -o $FILE_TMP $FILE_URL
+      touch $FILE_TMP.downloaded
+    fi
+    # install phantomjs
+    tar -xf $FILE_TMP && rm -f $FILE_LINK && ln -s $FILE_BIN $FILE_LINK
   fi
-  # download phantomjs
-  printf "downloading $FILE_URL\n" && curl -#L -C - -o $FILE_TMP $FILE_URL
-  # install phantomjs
-  tar -xjf $FILE_TMP && rm -f $FILE_LINK && ln -s $FILE_BIN $FILE_LINK
 }
 
 shNpmPostinstall() {
