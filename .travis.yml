@@ -1,15 +1,15 @@
 before_install:
-  ## init xvfb
-  ## http://docs.travis-ci.com/user/gui-and-headless-browsers/
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
+  # init xvfb
+  # http://docs.travis-ci.com/user/gui-and-headless-browsers/
+  - "export DISPLAY=:99.0 && sh -e /etc/init.d/xvfb start"
 branches:
   only:
   - alpha
   - beta
   - master
-language: node_js
+language:
+  - node_js
 node_js:
-- '0.10'
+  - '0.10'
 script:
-  - ./main.sh shNpmTest
+  - ./cli.sh shNpmTest
