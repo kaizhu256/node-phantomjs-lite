@@ -50,12 +50,13 @@ shNpmPostinstall() {
 }
 
 shNpmTest() {
+  # this function runs npm test
   printf '\ntesting phantomjs\n' && ./phantomjs test.js || return $?
   printf '\ntesting slimerjs\n' && ./slimerjs test.js || return $?
 }
 
 shNpmTestPublished() {
-  # this function tests npm published package
+  # this function runs npm test on the current published package
   cd /tmp && rm -fr /tmp/node_modules && npm install $PACKAGE_JSON_NAME || return $?
   cd /tmp/node_modules/$PACKAGE_JSON_NAME && npm test || return $?
 }
