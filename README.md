@@ -51,6 +51,7 @@ require('child_process').spawn(
 
 ## changelog
 #### 2014.10.31
+- rename headless-browser-lite to phantomjs-lite
 - split main.js into index.js and test.js
 
 #### 2014.9.22
