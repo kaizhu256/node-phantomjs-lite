@@ -13,5 +13,5 @@
     "postinstall": "./cli.sh shNpmPostinstall",
     "test": "./cli.sh shNpmTest"
   },
-  "version": "2014.10.31-12"
+  "version": "2014.10.31-17"
 }

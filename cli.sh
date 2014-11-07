@@ -6,11 +6,9 @@ shDownloadAndInstall() {
     return
   fi
   # download phantomjs
-  SCRIPT="curl -#L -C - -o $FILE_TMP $FILE_URL"
+  printf "downloading $FILE_URL\n" && curl -#L -C - -o $FILE_TMP $FILE_URL
   # install phantomjs
-  SCRIPT="$SCRIPT; tar -xjf $FILE_TMP && rm -f $FILE_LINK && ln -s $FILE_BIN $FILE_LINK"
-  printf "$SCRIPT\n"
-  eval "$SCRIPT"
+  tar -xjf $FILE_TMP && rm -f $FILE_LINK && ln -s $FILE_BIN $FILE_LINK
 }
 
 shNpmPostinstall() {
@@ -24,13 +22,13 @@ shNpmPostinstall() {
     FILE_LINK=phantomjs
     FILE_TMP=$TMPDIR/phantomjs-1.9.8-macosx.zip
     FILE_URL=https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-macosx.zip
-    shDownloadAndInstall
+    shDownloadAndInstall || return $?
     # download and install slimerjs
     FILE_BIN=slimerjs-0.9.3/slimerjs
     FILE_LINK=slimerjs
     FILE_TMP=$TMPDIR/slimerjs-0.9.3-mac.tar.bz2
     FILE_URL=http://download.slimerjs.org/releases/0.9.3/slimerjs-0.9.3-mac.tar.bz2
-    shDownloadAndInstall
+    shDownloadAndInstall || return $?
     ;;
   linux)
     # download and install phantomjs
@@ -38,13 +36,13 @@ shNpmPostinstall() {
     FILE_LINK=phantomjs
     FILE_TMP=$TMPDIR/phantomjs-1.9.8-linux-x86_64.tar.bz2
     FILE_URL=https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2
-    shDownloadAndInstall
+    shDownloadAndInstall || return $?
     # download and install slimerjs
     FILE_BIN=slimerjs-0.9.3/slimerjs
     FILE_LINK=slimerjs
     FILE_TMP=$TMPDIR/slimerjs-0.9.3-linux-x86_64.tar.bz2
     FILE_URL=http://download.slimerjs.org/releases/0.9.3/slimerjs-0.9.3-linux-x86_64.tar.bz2
-    shDownloadAndInstall
+    shDownloadAndInstall || return $?
     ;;
   esac
 }
@@ -71,7 +69,8 @@ shMain() {
     console.log(Object.keys(dict).map(function (key) {\
       value = dict[key];\
       return typeof value === 'string' ?\
-        'export PACKAGE_JSON_' + key.toUpperCase() + '=' + JSON.stringify(value) : ':';\
+        'export PACKAGE_JSON_' + key.toUpperCase() + '=' + JSON.stringify(value.split('\n')[0])\
+        : ':';\
     }).join(';'))") || return $?
   # init $PATH with $CWD/node_modules/.bin
   export PATH=$CWD/node_modules/phantomjs-lite:$CWD/node_modules/.bin:$PATH || return $?
