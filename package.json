@@ -1,5 +1,5 @@
 {
-  "contributors": [{ "name": "kai zhu", "email": "kaizhu256@gmail.com" }],
+  "author": "kai zhu <kaizhu256@gmail.com> (http://kaizhu256.github.io/)",
   "description": "minimal npm installer for phantomjs and slimerjs with no external dependencies",
   "engines": { "node": ">=0.10.x" },
   "license": "MIT",
@@ -13,5 +13,5 @@
     "postinstall": "./cli.sh shNpmPostinstall",
     "test": "./cli.sh shNpmTest"
   },
-  "version": "2014.10.31-18"
+  "version": "2014.10.31-20"
 }
