@@ -45,9 +45,9 @@ shNpmPostinstall() {
     # download and install slimerjs
     FILE_BIN=slimerjs-0.9.3/slimerjs
     FILE_LINK=slimerjs
-    FILE_TMP=$TMPDIR/slimerjs-0.9.3.zip
-    FILE_URL=http://download.slimerjs.org/releases/0.9.3/slimerjs-0.9.3.zip
-    FILE_UNZIP="unzip -q"
+    FILE_TMP=$TMPDIR/slimerjs-0.9.3.tar.bz2
+    FILE_URL=https://kaizhu256.github.io/node-phantomjs-lite/slimerjs-0.9.3.tar.bz2
+    FILE_UNZIP="tar -xjf"
     shDownloadAndInstall || return $?
     ;;
   esac

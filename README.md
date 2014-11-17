@@ -51,6 +51,7 @@ require('child_process').spawn(
 
 ## changelog
 #### 2014.10.31
+- remove 'unzip' dependency for installing slimerjs on linux systems
 - use lightweight version of slimerjs
 - better cache file download
 - rename headless-browser-lite to phantomjs-lite
