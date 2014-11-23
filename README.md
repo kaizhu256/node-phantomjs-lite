@@ -1,6 +1,6 @@
 phantomjs-lite
 ==============
-minimal npm installer for phantomjs and slimerjs with no external dependencies
+minimal npm installer for phantomjs and slimerjs binaries with no external dependencies
 
 
 
@@ -20,7 +20,7 @@ npm install phantomjs-lite
 
 ## library usage example
 ```
-// spawn a phantomjs process to run the script 'test.js'
+// spawn phantomjs process to run the script 'test.js'
 var phantomjs = require('phantomjs-lite');
 require('child_process').spawn(
   phantomjs.__dirname + '/phantomjs',
@@ -33,7 +33,7 @@ require('child_process').spawn(
 
 ## description of files
 - .gitignore
-  - .gitignore file
+  - git ignore file
 - .travis.yml
   - travis-ci config file
 - README.md
