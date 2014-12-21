@@ -1,14 +1,11 @@
-phantomjs-lite
+phantomjs-lite [![NPM](https://img.shields.io/npm/v/phantomjs-lite.svg?style=flat-square)](https://www.npmjs.org/package/phantomjs-lite) [![travis.ci-org build status](https://api.travis-ci.org/kaizhu256/node-phantomjs-lite.svg)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
 ==============
 minimal npm installer for phantomjs and slimerjs binaries with no external dependencies
+![screenshot](http://kaizhu256.github.io/node-phantomjs-lite/screenshot.png)
 
 
 
-## build status [![travis.ci-org build status](https://api.travis-ci.org/kaizhu256/node-phantomjs-lite.svg)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
-
-
-
-## quickstart
+## installation and quickstart
 ```
 # install phantomjs and slimerjs into ./node_modules/phantomjs-lite
 npm install phantomjs-lite
@@ -31,7 +28,7 @@ require('child_process').spawn(
 
 
 
-## description of files
+## package content
 - .gitignore
   - git ignore file
 - .travis.yml
@@ -39,13 +36,13 @@ require('child_process').spawn(
 - README.md
   - readme file
 - cli.sh
-  - shell script for installing / testing this app
+  - shell build script
 - index.js
-  - this app's main program / library
+  - main nodejs app
 - package.json
   - npm config file
 - test.js
-  - test script
+  - nodejs test script
 
 
 

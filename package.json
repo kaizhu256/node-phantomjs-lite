@@ -1,7 +1,7 @@
 {
   "author": "kai zhu <kaizhu256@gmail.com>",
   "description": "minimal npm installer for phantomjs and slimerjs binaries with no external dependencies",
-  "engines": { "node": ">=0.10.x" },
+  "engines": { "node": "^0.10.x" },
   "license": "MIT",
   "name": "phantomjs-lite",
   "os": ["darwin", "linux"],

@@ -1,6 +1,6 @@
 #!/bin/sh
 shDownloadAndInstall() {
-  # this funcition downloads and installs phantomjs and slimerjs
+  # this function downloads and installs phantomjs and slimerjs
   if [ ! -f $FILE_LINK ]
   then
     # download phantomjs
@@ -87,5 +87,6 @@ shMain() {
   # return $EXIT_CODE
   return $EXIT_CODE
 }
+
 # init main routine
 shMain $@
