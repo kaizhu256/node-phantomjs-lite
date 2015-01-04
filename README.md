@@ -4,31 +4,91 @@ minimal npm installer for phantomjs and slimerjs binaries with no external depen
 
 
 
-## quickstart
-#### this shell code runs runs the quickstart demo
+## build info [![travis-ci.org build status](https://api.travis-ci.org/kaizhu256/node-phantomjs-lite.svg)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
 ```
-# install phantomjs and slimerjs into ./node_modules/phantomjs-lite
-npm install phantomjs-lite
+# build-ci.sh
+# this shell code runs the build process in ci env
+shBuildCi() {
+  # init env
+  . utility2 && shInit && mkdir -p .tmp/build/coverage-report.html || return $?
+  # test quickstart
+  MODE_CI_BUILD=testQuickstartSh shRunScreenshot shTestQuickstartSh || return $?
+  # test example code
+  MODE_CI_BUILD=testExampleJs shRunScreenshot shTestExampleJs || return $?
+  # npm test
+  MODE_CI_BUILD=npmTest shRunScreenshot npm test || return $?
+}
+# run build process in ci env
+shBuildCi
+# save exit code
+EXITCODE=$?
+# upload build artifacts to github
+if [ "$TRAVIS" ]
+then
+  shRun shBuildGithubUpload || exit $?
+fi
+# exit with $EXIT_CODE
+exit $EXIT_CODE
+```
 
-# start interactive phantomjs session
-./node_modules/phantomjs-lite/phantomjs
+
+
+## quickstart
 ```
-![screenshot](http://kaizhu256.github.io/node-phantomjs-lite/screenshot.testQuickstartSh.png)
+# quickstart.sh
+# this shell code runs the quickstart demo
+# 1. create a clean app directory (e.g /tmp/app)
+# 2. inside app directory, run the following shell code inside a terminal
+
+shQuickstartSh() {
+  # install phantomjs and slimerjs into ./node_modules/phantomjs-lite
+  npm install phantomjs-lite
+
+  # end interactive phantomjs session after 10 seconds
+  /bin/sh -c "sleep 10 && killall phantomjs" &
+
+  # start interactive phantomjs session
+  ./node_modules/phantomjs-lite/phantomjs
+
+  # reset terminal settings in case it gets mangled by phantomjs
+  stty sane
+}
+
+# run quickstart demo
+shQuickstartSh
+```
+#### output
+[![screenshot](https://kaizhu256.github.io/node-phantomjs-lite/screenshot.testQuickstartSh.png)](https://kaizhu256.github.io/node-phantomjs-lite/screenshot.testQuickstartSh.png)
 
 
 
 ## example nodejs code
-#### this example will spawn phantomjs process to run the script 'test.js'
 ```
 // example.js
-// spawn phantomjs process to run the script 'test.js'
-var phantomjs = require('phantomjs-lite');
-require('child_process').spawn(
-  phantomjs.__dirname + '/phantomjs',
-  [ phantomjs.__dirname + '/test.js' ],
-  { stdio: 'inherit' }
-);
+// this nodejs code spawns a phantomjs process to run the phantomjs-lite test.js script
+// 1. create a clean app directory (e.g /tmp/app)
+// 2. inside app directory, save this js code as example.js
+// 3. inside app directory, run the following shell command:
+//    $ npm install phantomjs-lite && node example.js
+/*jslint
+  indent: 2,
+  node: true, nomen: true
+*/
+(function $$example() {
+  'use strict';
+  // require phantomjs-lite
+  var phantomjs_lite = require('phantomjs-lite');
+  // spawn phantomjs child-process to run phantomjs-lite/test.js
+  require('child_process').spawn(
+    phantomjs_lite.__dirname + '/phantomjs',
+    [ phantomjs_lite.__dirname + '/test.js' ],
+    { stdio: 'inherit' }
+  // pass phantomjs child-process's exit-code to this process
+  ).on('exit', process.exit);
+}());
 ```
+#### output
+[![screenshot](https://kaizhu256.github.io/node-phantomjs-lite/screenshot.testExampleJs.png)](https://kaizhu256.github.io/node-phantomjs-lite/screenshot.testExampleJs.png)
 
 
 
@@ -52,9 +112,10 @@ require('child_process').spawn(
 
 ## changelog
 #### todo
-- add utility2 build
+- none
 
 #### 2015.1.x
+- automate build with utility2
 - update README.md
 
 #### 2014.10.31

@@ -2,7 +2,7 @@
   "author": "kai zhu <kaizhu256@gmail.com>",
   "description": "minimal npm installer for phantomjs and slimerjs binaries with no external dependencies",
   "devDependencies": {
-    "utility2": "2014.12.29-106"
+    "utility2": "2015.1.4-101"
   },
   "engines": { "node": "^0.10.x" },
   "license": "MIT",
@@ -13,8 +13,9 @@
     "url" : "https://github.com/kaizhu256/node-phantomjs-lite.git"
   },
   "scripts": {
+    "build-ci": "npm install && node_modules/.bin/utility2 shRun shBuildCi",
     "postinstall": "./npm-postinstall.sh",
     "test": "printf '\ntesting phantomjs\n' && ./phantomjs test.js && printf '\ntesting slimerjs\n' && ./slimerjs test.js"
   },
-  "version": "2015.1.4-101"
+  "version": "2015.1.4-103"
 }

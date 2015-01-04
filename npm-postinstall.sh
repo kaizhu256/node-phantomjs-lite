@@ -8,8 +8,8 @@ shDownloadAndInstall() {
   # download phantomjs
   if [ ! -f $FILE_TMP.downloaded ]
   then
-    printf "downloading $FILE_URL to $FILE_TMP\n" || return $?
-    mkdir -p $TMPDIR2 && curl -#L -C - -o $FILE_TMP $FILE_URL || return $?
+    printf "downloading $FILE_URL to $FILE_TMP ...\n" || return $?
+    mkdir -p $TMPDIR2 && curl -Ls -o $FILE_TMP $FILE_URL || return $?
     touch $FILE_TMP.downloaded || return $?
   fi
   # install phantomjs
