@@ -12,4 +12,7 @@ language:
 node_js:
   - '0.10'
 script:
-  - ./cli.sh shNpmTestPublished && ./cli.sh shNpmTest
+  # test package
+  - npm test
+  # test published package
+  - cd /tmp && rm -fr node_modules phantomjs-* slimerjs-* && npm install phantomjs-lite && cd node_modules/phantomjs-lite && npm test
