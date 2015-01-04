@@ -42,7 +42,7 @@ exit $EXIT_CODE
 
 shQuickstartSh() {
   # install phantomjs and slimerjs into ./node_modules/phantomjs-lite
-  npm install phantomjs-lite
+  npm install phantomjs-lite || return $?
 
   # end interactive phantomjs session after 10 seconds
   /bin/sh -c "sleep 10 && killall phantomjs" &
@@ -51,7 +51,7 @@ shQuickstartSh() {
   ./node_modules/phantomjs-lite/phantomjs
 
   # reset terminal settings in case it gets mangled by phantomjs
-  stty sane
+  stty sane || return $?
 }
 
 # run quickstart demo
