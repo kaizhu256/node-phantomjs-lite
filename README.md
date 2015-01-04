@@ -7,7 +7,7 @@ minimal npm installer for phantomjs and slimerjs binaries with no external depen
 ## build info [![travis-ci.org build status](https://api.travis-ci.org/kaizhu256/node-phantomjs-lite.svg)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
 ```
 # build-ci.sh
-# this shell code runs the build process in ci env
+# this shell code runs the ci-build process
 shBuildCi() {
   # init env
   . utility2 && shInit && mkdir -p .tmp/build/coverage-report.html || return $?
@@ -89,6 +89,11 @@ shQuickstartSh
 ```
 #### output
 [![screenshot](https://kaizhu256.github.io/node-phantomjs-lite/screenshot.testExampleJs.png)](https://kaizhu256.github.io/node-phantomjs-lite/screenshot.testExampleJs.png)
+
+
+
+## npm dependencies
+- none
 
 
 
