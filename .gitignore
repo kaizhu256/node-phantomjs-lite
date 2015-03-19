@@ -1,7 +1,8 @@
 *.log
 .DS_Store
-.build/
-.tmp/
-node_modules
+.travis.yml
+Procfile
+node_modules/
 phantomjs*
 slimerjs*
+tmp/
