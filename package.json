@@ -1,10 +1,22 @@
 {
-    "author": "kai zhu <kaizhu256@gmail.com>",
-    "description": "minimal npm installer for phantomjs and slimerjs binaries with no external dependencies",
+    "_packageJson": true,
+    "description": "minimal npm installer for phantomjs and slimerjs binaries with zero external dependencies",
     "devDependencies": {
-        "utility2": "2015.3.19-10"
+        "utility2": "2015.3.19-11"
     },
-    "engines": { "node": "^0.10.x" },
+    "engines": { "node": ">=0.10 <=0.12" },
+    "keywords": [
+        "browser",
+        "cms",
+        "lightweight",
+        "lite",
+        "mongo",
+        "mongodb",
+        "utility2",
+        "swagger",
+        "swagger-ui",
+        "web"
+    ],
     "license": "MIT",
     "name": "phantomjs-lite",
     "os": ["darwin", "linux"],
@@ -13,9 +25,9 @@
         "url" : "https://github.com/kaizhu256/node-phantomjs-lite.git"
     },
     "scripts": {
-        "build-ci": "npm install && node_modules/.bin/utility2 shRun shBuildCi",
+        "build-ci": "node_modules/.bin/utility2 shRun shBuildCi",
         "postinstall": "./npm-postinstall.sh",
-        "test": "printf '\ntesting phantomjs\n' && ./phantomjs test.js && printf '\ntesting slimerjs\n' && ./slimerjs test.js"
+        "test": "node_modules/.bin/utility2 shRun shReadmePackageJsonExport && printf '\ntesting phantomjs\n' && ./phantomjs test.js && printf '\ntesting slimerjs\n' && ./slimerjs test.js"
     },
     "version": "2015.1.4-103"
 }
