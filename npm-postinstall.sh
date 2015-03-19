@@ -1,7 +1,8 @@
 #!/bin/sh
 shDownloadAndInstall() {
   # this function downloads and installs phantomjs and slimerjs
-  if [ -f $FILE_LINK ] || ([ "$FILE_UNZIP" = "unzip -q" ] && ! (unzip > /dev/null 2>&1))
+  if ([ -d $FILE_DIR ] && [ -f $FILE_LINK ]) || \
+      ([ "$FILE_UNZIP" = "unzip -q" ] && ! (unzip > /dev/null 2>&1))
   then
     return
   fi
@@ -29,10 +30,10 @@ shNpmPostinstall() {
     FILE_UNZIP="unzip -q"
     shDownloadAndInstall || return $?
     # download and install slimerjs
-    FILE_BIN=slimerjs-0.9.4/slimerjs
+    FILE_BIN=slimerjs-0.9.5/slimerjs
     FILE_LINK=slimerjs
-    FILE_TMP=$TMPDIR2/slimerjs-0.9.4.zip
-    FILE_URL=http://download.slimerjs.org/releases/0.9.4/slimerjs-0.9.4.zip
+    FILE_TMP=$TMPDIR2/slimerjs-0.9.5.zip
+    FILE_URL=http://download.slimerjs.org/releases/0.9.5/slimerjs-0.9.5.zip
     FILE_UNZIP="unzip -q"
     shDownloadAndInstall || return $?
     ;;
@@ -45,10 +46,10 @@ shNpmPostinstall() {
     FILE_UNZIP="tar -xjf"
     shDownloadAndInstall || return $?
     # download and install slimerjs
-    FILE_BIN=slimerjs-0.9.4/slimerjs
+    FILE_BIN=slimerjs-0.9.5/slimerjs
     FILE_LINK=slimerjs
-    FILE_TMP=$TMPDIR2/slimerjs-0.9.4.zip
-    FILE_URL=http://download.slimerjs.org/releases/0.9.4/slimerjs-0.9.4.zip
+    FILE_TMP=$TMPDIR2/slimerjs-0.9.5.zip
+    FILE_URL=http://download.slimerjs.org/releases/0.9.5/slimerjs-0.9.5.zip
     FILE_UNZIP="unzip -q"
     shDownloadAndInstall || return $?
     ;;

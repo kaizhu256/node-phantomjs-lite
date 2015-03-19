@@ -1,6 +1,6 @@
 phantomjs-lite [![NPM](https://img.shields.io/npm/v/phantomjs-lite.svg?style=flat-square)](https://www.npmjs.org/package/phantomjs-lite) [![travis.ci-org build status](https://api.travis-ci.org/kaizhu256/node-phantomjs-lite.svg)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
 ==============
-minimal npm installer for phantomjs and slimerjs binaries with no external dependencies
+minimal npm installer for phantomjs and slimerjs binaries with zero external dependencies
 
 
 
@@ -115,25 +115,111 @@ shQuickstartSh
 
 
 
-## changelog
-#### todo
+# npm-dependencies
+- [istanbul-lite](https://www.npmjs.com/package/istanbul-lite)
+- [jslint-lite](https://www.npmjs.com/package/jslint-lite)
+
+
+
+# package-listing
+[![screen-capture](https://kaizhu256.github.io/node-utility2/build/screen-capture.gitLsTree.png)](https://github.com/kaizhu256/node-utility2)
+
+
+
+# package.json
+```
+{
+    "_packageJson": true,
+    "description": "minimal npm installer for phantomjs and slimerjs binaries with zero external dependencies",
+    "devDependencies": {
+        "utility2": "2015.3.19-11"
+    },
+    "engines": { "node": ">=0.10 <=0.12" },
+    "keywords": [
+        "browser",
+        "cms",
+        "lightweight",
+        "lite",
+        "mongo",
+        "mongodb",
+        "utility2",
+        "swagger",
+        "swagger-ui",
+        "web"
+    ],
+    "license": "MIT",
+    "name": "phantomjs-lite",
+    "os": ["darwin", "linux"],
+    "repository" : {
+        "type" : "git",
+        "url" : "https://github.com/kaizhu256/node-phantomjs-lite.git"
+    },
+    "scripts": {
+        "build-ci": "node_modules/.bin/utility2 shRun shBuildCi",
+        "postinstall": "./npm-postinstall.sh",
+        "test": "node_modules/.bin/utility2 shRun shReadmePackageJsonExport && \
+printf '\ntesting phantomjs\n' && ./phantomjs test.js && \
+printf '\ntesting slimerjs\n' && ./slimerjs test.js"
+    },
+    "version": "2015.1.4-103"
+}
+```
+
+
+
+# todo
 - add screen-capture example
 - none
 
-#### 2015.1.x
-- automate build with utility2
-- update README.md
 
-#### 2014.10.31
-- remove dependency on https://kaizhu256.github.io/node-phantomjs-lite/slimerjs-0.9.3.tar.bz2
-- bump slimerjs to 0.9.4
-- rename cli.sh to npm-postinstall.sh
-- remove 'unzip' dependency for installing slimerjs on linux systems
-- use lightweight version of slimerjs
-- better cache file download
-- rename headless-browser-lite to phantomjs-lite
-- split main.js into index.js and test.js
 
-#### 2014.9.22
-- add README.md
-- initial package creation
+# changelog of last 50 commits
+[![screen-capture](https://kaizhu256.github.io/node-utility2/build/screen-capture.gitLog.png)](https://github.com/kaizhu256/node-utility2/commits)
+
+
+
+# internal build-script
+```
+# build.sh
+# this shell script will run the ci-build for this package
+shBuildCi() {
+    # init env
+    export npm_config_mode_slimerjs=1 || return $?
+    . node_modules/.bin/utility2 && shInit || return $?
+
+    # run npm-test on published package
+    shRun shNpmTestPublished || return $?
+
+    # run npm-test
+    MODE_BUILD=npmTest shRunScreenCapture npm test || return $?
+
+    # if number of commits > 1024, then squash older commits
+    shRun shGitBackupAndSquashAndPush 1024 > /dev/null || return $?
+}
+shBuildCi
+
+# save exit-code
+EXIT_CODE=$?
+
+shBuildCleanup() {
+    # this function will cleanup build-artifacts in local build dir
+    # create package-listing
+    MODE_BUILD=gitLsTree shRunScreenCapture shGitLsTree || return $?
+    # create recent changelog of last 50 commits
+    MODE_BUILD=gitLog shRunScreenCapture git log -50 --pretty="%ai\u000a%B" || \
+        return $?
+}
+shBuildCleanup || exit $?
+
+shBuildGithubUploadCleanup() {
+    # this function will cleanup build-artifacts in local gh-pages repo
+    return
+}
+
+# upload build-artifacts to github,
+# and if number of commits > 16, then squash older commits
+COMMIT_LIMIT=16 shRun shBuildGithubUpload || exit $?
+
+# exit with $EXIT_CODE
+exit $EXIT_CODE
+```
