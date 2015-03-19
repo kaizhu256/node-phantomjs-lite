@@ -97,32 +97,8 @@ shQuickstartSh
 
 
 
-## package content
-- .gitignore
-  - git ignore file
-- .travis.yml
-  - travis-ci config file
-- README.md
-  - readme file
-- index.js
-  - main nodejs app
-- npm-postinstall.sh
-  - npm postinstall shell script
-- package.json
-  - npm config file
-- test.js
-  - phantomjs test script
-
-
-
-# npm-dependencies
-- [istanbul-lite](https://www.npmjs.com/package/istanbul-lite)
-- [jslint-lite](https://www.npmjs.com/package/jslint-lite)
-
-
-
 # package-listing
-[![screen-capture](https://kaizhu256.github.io/node-utility2/build/screen-capture.gitLsTree.png)](https://github.com/kaizhu256/node-utility2)
+[![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.gitLsTree.png)](https://github.com/kaizhu256/node-phantomjs-lite)
 
 
 
@@ -137,14 +113,9 @@ shQuickstartSh
     "engines": { "node": ">=0.10 <=0.12" },
     "keywords": [
         "browser",
-        "cms",
-        "lightweight",
-        "lite",
-        "mongo",
-        "mongodb",
-        "utility2",
-        "swagger",
-        "swagger-ui",
+        "lightweight", "light", "lite",
+        "phantomjs",
+        "slimerjs",
         "web"
     ],
     "license": "MIT",
@@ -174,7 +145,7 @@ printf '\ntesting slimerjs\n' && ./slimerjs test.js"
 
 
 # changelog of last 50 commits
-[![screen-capture](https://kaizhu256.github.io/node-utility2/build/screen-capture.gitLog.png)](https://github.com/kaizhu256/node-utility2/commits)
+[![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.gitLog.png)](https://github.com/kaizhu256/node-phantomjs-lite/commits)
 
 
 

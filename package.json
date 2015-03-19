@@ -7,14 +7,9 @@
     "engines": { "node": ">=0.10 <=0.12" },
     "keywords": [
         "browser",
-        "cms",
-        "lightweight",
-        "lite",
-        "mongo",
-        "mongodb",
-        "utility2",
-        "swagger",
-        "swagger-ui",
+        "lightweight", "light", "lite",
+        "phantomjs",
+        "slimerjs",
         "web"
     ],
     "license": "MIT",
