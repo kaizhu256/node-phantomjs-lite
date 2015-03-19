@@ -5,31 +5,6 @@ minimal npm installer for phantomjs and slimerjs binaries with zero external dep
 
 
 # build info [![travis-ci.org build status](https://api.travis-ci.org/kaizhu256/node-phantomjs-lite.svg)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
-```
-# build-ci.sh
-# this shell code runs the ci-build process
-shBuildCi() {
-  # init env
-  . utility2 && shInit && mkdir -p .tmp/build/coverage-report.html || return $?
-  # test quickstart
-  MODE_CI_BUILD=testQuickstartSh shRunScreenshot shTestQuickstartSh || return $?
-  # test example code
-  MODE_CI_BUILD=testExampleJs shRunScreenshot shTestExampleJs || return $?
-  # npm test
-  MODE_CI_BUILD=npmTest shRunScreenshot npm test || return $?
-}
-# run build process in ci env
-shBuildCi
-# save exit code
-EXITCODE=$?
-# upload build artifacts to github
-if [ "$TRAVIS" ]
-then
-  shRun shBuildGithubUpload || exit $?
-fi
-# exit with $EXIT_CODE
-exit $EXIT_CODE
-```
 
 
 
@@ -87,8 +62,10 @@ shQuickstartSh
   ).on('exit', process.exit);
 }());
 ```
-#### output
-[![screenshot](https://kaizhu256.github.io/node-phantomjs-lite/screenshot.testExampleJs.png)](https://kaizhu256.github.io/node-phantomjs-lite/screenshot.testExampleJs.png)
+#### output from shell
+[![screen-capture](https://kaizhu256.github.io/node-istanbul-lite/build/screen-capture.testExampleSh.png)](https://travis-ci.org/kaizhu256/node-istanbul-lite)
+#### output from istanbul-lite
+[![screen-capture](https://kaizhu256.github.io/node-istanbul-lite//build/screen-capture.testExampleSh.slimerjs._2Ftmp_2Fapp_2Fhtml-report_2Fapp_2Ffoo.js.html.png)](https://kaizhu256.github.io/node-istanbul-lite/build..beta..travis-ci.org/coverage.html/node-istanbul-lite/index.js.html)
 
 
 
@@ -152,14 +129,21 @@ printf '\ntesting slimerjs\n' && ./slimerjs test.js"
 # internal build-script
 ```
 # build.sh
-# this shell script will run the ci-build for this package
+# this shell script will run the build for this package
 shBuildCi() {
     # init env
     export npm_config_mode_slimerjs=1 || return $?
     . node_modules/.bin/utility2 && shInit || return $?
 
-    # run npm-test on published package
-    shRun shNpmTestPublished || return $?
+    #!! # run npm-test on published package
+    #!! shRun shNpmTestPublished || return $?
+
+    #!! # test example shell script
+    #!! MODE_BUILD=testExampleSh \
+        #!! shRunScreenCapture shReadmeTestSh example.sh || return $?
+    #!! # save screen-capture
+    #!! cp /tmp/app/node_modules/utility2/tmp/build/screen-capture.*.png \
+        #!! $npm_config_dir_build || return $?
 
     # run npm-test
     MODE_BUILD=npmTest shRunScreenCapture npm test || return $?
