@@ -4,20 +4,16 @@ minimal npm installer for phantomjs and slimerjs binaries with zero external dep
 
 
 
-# build info [![travis-ci.org build status](https://api.travis-ci.org/kaizhu256/node-phantomjs-lite.svg)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
-
-
-
 # quickstart
 #### follow the instruction in this script
 ```
 # example.sh
-# this shell code runs the quickstart demo
-# 1. create a clean app directory (e.g /tmp/app)
-# 2. inside app directory, run the following shell code inside a terminal
+
+# instruction
+    # 1. copy and paste this entire shell script into a console and press enter
 
 shExampleSh() {
-  # install phantomjs and slimerjs into ./node_modules/phantomjs-lite
+  # npm install phantomjs-lite
   npm install phantomjs-lite || return $?
 
   # end interactive phantomjs session after 10 seconds
@@ -77,7 +73,7 @@ shExampleSh
 printf '\ntesting phantomjs\n' && ./phantomjs test.js && \
 printf '\ntesting slimerjs\n' && ./slimerjs test.js"
     },
-    "version": "2015.1.4-103"
+    "version": "2015.3.20-10"
 }
 ```
 
@@ -103,8 +99,8 @@ shBuildCi() {
     export npm_config_mode_slimerjs=1 || return $?
     . node_modules/.bin/utility2 && shInit || return $?
 
-    #!! # run npm-test on published package
-    #!! shRun shNpmTestPublished || return $?
+    # run npm-test on published package
+    shRun shNpmTestPublished || return $?
 
     # test example shell script
     MODE_BUILD=testExampleSh \
