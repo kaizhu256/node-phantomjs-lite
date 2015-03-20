@@ -8,14 +8,15 @@ minimal npm installer for phantomjs and slimerjs binaries with zero external dep
 
 
 
-## quickstart
+# quickstart
+#### follow the instruction in this script
 ```
-# quickstart.sh
+# example.sh
 # this shell code runs the quickstart demo
 # 1. create a clean app directory (e.g /tmp/app)
 # 2. inside app directory, run the following shell code inside a terminal
 
-shQuickstartSh() {
+shExampleSh() {
   # install phantomjs and slimerjs into ./node_modules/phantomjs-lite
   npm install phantomjs-lite || return $?
 
@@ -29,47 +30,14 @@ shQuickstartSh() {
   stty sane || return $?
 }
 
-# run quickstart demo
-shQuickstartSh
-```
-#### output
-[![screenshot](https://kaizhu256.github.io/node-phantomjs-lite/screenshot.testQuickstartSh.png)](https://kaizhu256.github.io/node-phantomjs-lite/screenshot.testQuickstartSh.png)
-
-
-
-## nodejs example code
-```
-// example.js
-// this nodejs code spawns a phantomjs process to run the phantomjs-lite test.js script
-// 1. create a clean app directory (e.g /tmp/app)
-// 2. inside app directory, save this js code as example.js
-// 3. inside app directory, run the following shell command:
-//    $ npm install phantomjs-lite && node example.js
-/*jslint
-  indent: 2,
-  node: true, nomen: true
-*/
-(function $$example() {
-  'use strict';
-  // require phantomjs-lite
-  var phantomjs_lite = require('phantomjs-lite');
-  // spawn phantomjs child-process to run phantomjs-lite/test.js
-  require('child_process').spawn(
-    phantomjs_lite.__dirname + '/phantomjs',
-    [ phantomjs_lite.__dirname + '/test.js' ],
-    { stdio: 'inherit' }
-  // pass phantomjs child-process's exit-code to this process
-  ).on('exit', process.exit);
-}());
+shExampleSh
 ```
 #### output from shell
-[![screen-capture](https://kaizhu256.github.io/node-istanbul-lite/build/screen-capture.testExampleSh.png)](https://travis-ci.org/kaizhu256/node-istanbul-lite)
-#### output from istanbul-lite
-[![screen-capture](https://kaizhu256.github.io/node-istanbul-lite//build/screen-capture.testExampleSh.slimerjs._2Ftmp_2Fapp_2Fhtml-report_2Fapp_2Ffoo.js.html.png)](https://kaizhu256.github.io/node-istanbul-lite/build..beta..travis-ci.org/coverage.html/node-istanbul-lite/index.js.html)
+[![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.testExampleSh.png)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
 
 
 
-## npm dependencies
+# npm-dependencies
 - none
 
 
@@ -138,12 +106,9 @@ shBuildCi() {
     #!! # run npm-test on published package
     #!! shRun shNpmTestPublished || return $?
 
-    #!! # test example shell script
-    #!! MODE_BUILD=testExampleSh \
-        #!! shRunScreenCapture shReadmeTestSh example.sh || return $?
-    #!! # save screen-capture
-    #!! cp /tmp/app/node_modules/utility2/tmp/build/screen-capture.*.png \
-        #!! $npm_config_dir_build || return $?
+    # test example shell script
+    MODE_BUILD=testExampleSh \
+        shRunScreenCapture shReadmeTestSh example.sh || return $?
 
     # run npm-test
     MODE_BUILD=npmTest shRunScreenCapture npm test || return $?
