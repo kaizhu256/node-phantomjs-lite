@@ -50,7 +50,7 @@ shExampleSh
     "description": "lightweight version of phantomjs and slimerjs with \
 zero npm dependencies",
     "devDependencies": {
-        "utility2": "2015.3.19-11"
+        "utility2": "2015.3.24-10"
     },
     "engines": { "node": ">=0.10 <=0.12" },
     "keywords": [
@@ -74,7 +74,7 @@ zero npm dependencies",
 printf '\ntesting phantomjs\n' && ./phantomjs test.js && \
 printf '\ntesting slimerjs\n' && ./slimerjs test.js"
     },
-    "version": "2015.3.20-10"
+    "version": "2015.3.24-10"
 }
 ```
 
