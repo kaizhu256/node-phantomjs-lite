@@ -1,11 +1,11 @@
 phantomjs-lite [![NPM](https://img.shields.io/npm/v/phantomjs-lite.svg?style=flat-square)](https://www.npmjs.org/package/phantomjs-lite) [![travis.ci-org build status](https://api.travis-ci.org/kaizhu256/node-phantomjs-lite.svg)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
 ==============
-minimal npm installer for phantomjs and slimerjs binaries with zero external dependencies
+lightweight version of phantomjs and slimerjs with zero npm dependencies
 
 
 
 # quickstart
-#### follow the instruction in this script
+#### to run this example, read the instruction inside the script below
 ```
 # example.sh
 
@@ -47,14 +47,15 @@ shExampleSh
 ```
 {
     "_packageJson": true,
-    "description": "minimal npm installer for phantomjs and slimerjs binaries with zero external dependencies",
+    "description": "lightweight version of phantomjs and slimerjs with \
+zero npm dependencies",
     "devDependencies": {
         "utility2": "2015.3.19-11"
     },
     "engines": { "node": ">=0.10 <=0.12" },
     "keywords": [
         "browser",
-        "lightweight", "light", "lite",
+        "light", "lightweight", "lite",
         "phantomjs",
         "slimerjs",
         "web"
@@ -67,7 +68,7 @@ shExampleSh
         "url" : "https://github.com/kaizhu256/node-phantomjs-lite.git"
     },
     "scripts": {
-        "build-ci": "node_modules/.bin/utility2 shRun shBuildCi",
+        "build-ci": "node_modules/.bin/utility2 shRun shReadmeBuild",
         "postinstall": "./npm-postinstall.sh",
         "test": "node_modules/.bin/utility2 shRun shReadmePackageJsonExport && \
 printf '\ntesting phantomjs\n' && ./phantomjs test.js && \
@@ -94,7 +95,7 @@ printf '\ntesting slimerjs\n' && ./slimerjs test.js"
 ```
 # build.sh
 # this shell script will run the build for this package
-shBuildCi() {
+shBuild() {
     # init env
     export npm_config_mode_slimerjs=1 || return $?
     . node_modules/.bin/utility2 && shInit || return $?
@@ -112,7 +113,7 @@ shBuildCi() {
     # if number of commits > 1024, then squash older commits
     shRun shGitBackupAndSquashAndPush 1024 > /dev/null || return $?
 }
-shBuildCi
+shBuild
 
 # save exit-code
 EXIT_CODE=$?

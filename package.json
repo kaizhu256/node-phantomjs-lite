@@ -1,13 +1,13 @@
 {
     "_packageJson": true,
-    "description": "minimal npm installer for phantomjs and slimerjs binaries with zero external dependencies",
+    "description": "lightweight version of phantomjs and slimerjs with zero npm dependencies",
     "devDependencies": {
         "utility2": "2015.3.19-11"
     },
     "engines": { "node": ">=0.10 <=0.12" },
     "keywords": [
         "browser",
-        "lightweight", "light", "lite",
+        "light", "lightweight", "lite",
         "phantomjs",
         "slimerjs",
         "web"
@@ -20,7 +20,7 @@
         "url" : "https://github.com/kaizhu256/node-phantomjs-lite.git"
     },
     "scripts": {
-        "build-ci": "node_modules/.bin/utility2 shRun shBuildCi",
+        "build-ci": "node_modules/.bin/utility2 shRun shReadmeBuild",
         "postinstall": "./npm-postinstall.sh",
         "test": "node_modules/.bin/utility2 shRun shReadmePackageJsonExport && printf '\ntesting phantomjs\n' && ./phantomjs test.js && printf '\ntesting slimerjs\n' && ./slimerjs test.js"
     },
