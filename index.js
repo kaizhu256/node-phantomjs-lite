@@ -41,24 +41,13 @@
             arg0 = arg0 || process.argv[2];
             argList = argList || process.argv.slice(3);
             options = options || { stdio: [0, 1, 2] };
-            // http://docs.slimerjs.org/current/installation.html#configuring-slimerjs
-            process.env.SLIMERJSLAUNCHER = process.env.SLIMERJSLAUNCHER || (
-                process.platform === 'darwin'
-                ? '/Applications/Firefox.app/Contents/MacOS/firefox'
-                : '/usr/bin/firefox'
-            );
             switch (argList[0]) {
             case 'eval':
             case 'evalWithoutExit':
-                require('child_process').spawn(
-                    __dirname + '/' + arg0,
-                    [__filename].concat(argList),
-                    options
-                );
+                argList = [__filename].concat(argList);
                 break;
-            default:
-                require('child_process').spawn(__dirname + '/' + arg0, argList, options);
             }
+            return require('child_process').spawn(__dirname + '/' + arg0, argList, options);
         };
         // run main module
         if (module === require.main) {

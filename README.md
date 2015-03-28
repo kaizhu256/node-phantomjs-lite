@@ -28,25 +28,28 @@ shExampleSh() {
     npm install phantomjs-lite@2015.3.29-10 || return $?
 
     # screen-capture http://phantomjs.org/screen-capture.html
-    local ARG || return $?
-    for ARG in phantomjs slimerjs
+    local ARG0 || return $?
+    for ARG0 in phantomjs slimerjs
     do
-        node_modules/.bin/phantomjs-lite $ARG evalWithoutExit "
-            var file, page, url;
-            file = '$(pwd)/screen-capture.$ARG.png';
-            page = require('webpage').create();
-            url = 'http://phantomjs.org/screen-capture.html';
-            page.clipRect = { height: 768, left: 0, top: 0, width: 1024 };
-            page.viewportSize = { height: 768, width: 1024 };
-            console.log('$ARG opening ' + url);
-            page.open(url, function () {
-            });
-            setTimeout(function () {
-                console.log('$ARG creating screen-capture file://' + file);
-                page.render(file);
-                phantom.exit();
-            }, 10000);
-        " || return $?
+        if (node_modules/.bin/phantomjs-lite $ARG0 detect)
+        then
+            node_modules/.bin/phantomjs-lite $ARG0 evalWithoutExit "
+                var file, page, url;
+                file = '$(pwd)/screen-capture.$ARG0.png';
+                page = require('webpage').create();
+                url = 'http://phantomjs.org/screen-capture.html';
+                page.clipRect = { height: 768, left: 0, top: 0, width: 1024 };
+                page.viewportSize = { height: 768, width: 1024 };
+                console.log('$ARG0 opening ' + url);
+                page.open(url, function () {
+                });
+                setTimeout(function () {
+                    console.log('$ARG0 creating screen-capture file://' + file);
+                    page.render(file);
+                    phantom.exit();
+                }, 10000);
+            " || return $?
+        fi
     done
 }
 
@@ -106,12 +109,12 @@ zero npm dependencies",
         "build-ci": "node_modules/.bin/utility2 shRun shReadmeBuild",
         "postinstall": "./npm-postinstall.sh",
         "test": "node_modules/.bin/utility2 shRun shReadmePackageJsonExport && \
-printf 'testing phantomjs\n' && \
-[ $(./index.js phantomjs eval 'console.log(\"hello\")') = 'hello' ] && \
-printf 'passed\n' && \
-printf 'testing slimerjs\n' && \
-[ $(./index.js slimerjs eval 'console.log(\"hello\")') = 'hello' ] && \
-printf 'passed\n'"
+for ARG0 in phantomjs slimerjs; \
+do \
+    printf \"testing $ARG0\n\" || exit $?; \
+    [ $(./index.js $ARG0 eval 'console.log(\"hello\")') = 'hello' ] || exit $?; \
+    printf \"passed\n\" || exit $?; \
+done"
     },
     "version": "2015.3.29-10"
 }

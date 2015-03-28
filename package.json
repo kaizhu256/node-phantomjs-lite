@@ -26,7 +26,7 @@
     "scripts": {
         "build-ci": "node_modules/.bin/utility2 shRun shReadmeBuild",
         "postinstall": "./npm-postinstall.sh",
-        "test": "node_modules/.bin/utility2 shRun shReadmePackageJsonExport && printf 'testing phantomjs\n' && [ $(./index.js phantomjs eval 'console.log(\"hello\")') = 'hello' ] && printf 'passed\n' && printf 'testing slimerjs\n' && [ $(./index.js slimerjs eval 'console.log(\"hello\")') = 'hello' ] && printf 'passed\n'"
+        "test": "node_modules/.bin/utility2 shRun shReadmePackageJsonExport && for ARG0 in phantomjs slimerjs; do     printf \"testing $ARG0\n\" || exit $?;     [ $(./index.js $ARG0 eval 'console.log(\"hello\")') = 'hello' ] || exit $?;     printf \"passed\n\" || exit $?; done"
     },
     "version": "2015.3.29-10"
 }
