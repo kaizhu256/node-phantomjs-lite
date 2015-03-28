@@ -31,25 +31,22 @@ shExampleSh() {
     local ARG0 || return $?
     for ARG0 in phantomjs slimerjs
     do
-        if (node_modules/.bin/phantomjs-lite $ARG0 detect)
-        then
-            node_modules/.bin/phantomjs-lite $ARG0 evalWithoutExit "
-                var file, page, url;
-                file = '$(pwd)/screen-capture.$ARG0.png';
-                page = require('webpage').create();
-                url = 'http://phantomjs.org/screen-capture.html';
-                page.clipRect = { height: 768, left: 0, top: 0, width: 1024 };
-                page.viewportSize = { height: 768, width: 1024 };
-                console.log('$ARG0 opening ' + url);
-                page.open(url, function () {
-                });
-                setTimeout(function () {
-                    console.log('$ARG0 creating screen-capture file://' + file);
-                    page.render(file);
-                    phantom.exit();
-                }, 10000);
-            " || return $?
-        fi
+        node_modules/.bin/phantomjs-lite $ARG0 evalWithoutExit "
+            var file, page, url;
+            file = '$(pwd)/screen-capture.$ARG0.png';
+            page = require('webpage').create();
+            url = 'http://phantomjs.org/screen-capture.html';
+            page.clipRect = { height: 768, left: 0, top: 0, width: 1024 };
+            page.viewportSize = { height: 768, width: 1024 };
+            console.log('$ARG0 opening ' + url);
+            page.open(url, function () {
+            });
+            setTimeout(function () {
+                console.log('$ARG0 creating screen-capture file://' + file);
+                page.render(file);
+                phantom.exit();
+            }, 10000);
+        " || return $?
     done
 }
 
@@ -116,7 +113,7 @@ do \
     printf \"passed\n\" || exit $?; \
 done"
     },
-    "version": "2015.3.29-10"
+    "version": "2015.3.29-11"
 }
 ```
 
