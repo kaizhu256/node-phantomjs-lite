@@ -37,13 +37,31 @@
     case 'node':
         module.exports = require('./package.json');
         module.exports.__dirname = __dirname;
+        module.exports.processSpawn = function (arg0, argList, options) {
+            arg0 = arg0 || process.argv[2];
+            argList = argList || process.argv.slice(3);
+            options = options || { stdio: [0, 1, 2] };
+            // http://docs.slimerjs.org/current/installation.html#configuring-slimerjs
+            process.env.SLIMERJSLAUNCHER = process.env.SLIMERJSLAUNCHER ||
+                process.platform === 'darwin'
+                ? '/Applications/Firefox.app/Contents/MacOS/firefox'
+                : '/usr/bin/firefox';
+            switch (argList[0]) {
+            case 'eval':
+            case 'evalWithoutExit':
+                require('child_process').spawn(
+                    __dirname + '/' + arg0,
+                    [__filename].concat(argList),
+                    options
+                );
+                break;
+            default:
+                require('child_process').spawn(__dirname + '/' + arg0, argList, options);
+            }
+        };
         // run main module
         if (module === require.main) {
-            require('child_process').spawn(
-                __dirname + '/' + process.argv[2],
-                [__filename].concat(process.argv.slice(3)),
-                { stdio: [0, 1, 2] }
-            );
+            module.exports.processSpawn();
         }
         break;
 

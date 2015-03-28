@@ -5,6 +5,7 @@ minimal npm installer for phantomjs and slimerjs with zero npm dependencies
 
 
 # build-status [![travis-ci.org build-status](https://api.travis-ci.org/kaizhu256/node-phantomjs-lite.svg)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
+![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.slimerjs.png)
 
 
 
@@ -19,7 +20,8 @@ minimal npm installer for phantomjs and slimerjs with zero npm dependencies
 
 # instruction
     # 1. copy and paste this entire shell script into a console and press enter
-    # 2. view coverage in ./html-report/index.html
+    # 2. view ./screen-capture.phantomjs.png
+    # 3. view ./screen-capture.slimerjs.png
 
 shExampleSh() {
     # npm install phantomjs-lite
@@ -53,9 +55,9 @@ shExampleSh
 #### output from shell
 [![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.testExampleSh.png)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
 #### output from phantomjs
-![screen-capture](https://kaizhu256.github.io/node-istanbul-lite/build/screen-capture.phantomjs.png)
+![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.phantomjs.png)
 #### output from slimerjs
-![screen-capture](https://kaizhu256.github.io/node-istanbul-lite/build/screen-capture.slimerjs.png)
+![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.slimerjs.png)
 
 
 
