@@ -13,27 +13,50 @@ minimal npm installer for phantomjs and slimerjs with zero npm dependencies
 ```
 # example.sh
 
+# this shell script will
+    # npm install phantomjs-lite
+    # create test-script foo.js
+    # run offline-coverage for foo.js and create an offline-report
+
 # instruction
     # 1. copy and paste this entire shell script into a console and press enter
+    # 2. view coverage in ./html-report/index.html
 
 shExampleSh() {
-  # npm install phantomjs-lite
-  npm install phantomjs-lite || return $?
+    # npm install phantomjs-lite
+    npm install phantomjs-lite || return $?
 
-  # end interactive phantomjs session after 10 seconds
-  /bin/sh -c "sleep 10 && killall phantomjs" &
-
-  # start interactive phantomjs session
-  ./node_modules/phantomjs-lite/phantomjs
-
-  # reset terminal settings in case it gets mangled by phantomjs
-  stty sane || return $?
+    # screen-capture http://phantomjs.org/screen-capture.html
+    local ARG || return $?
+    for ARG in phantomjs slimerjs
+    do
+        node_modules/.bin/phantomjs-lite $ARG evalWithoutExit "
+            var file, page, url;
+            file = '$(pwd)/screen-capture.$ARG.png';
+            page = require('webpage').create();
+            url = 'http://phantomjs.org/screen-capture.html';
+            page.clipRect = { height: 768, left: 0, top: 0, width: 1024 };
+            page.viewportSize = { height: 768, width: 1024 };
+            console.log('$ARG opening ' + url);
+            page.open(url, function () {
+            });
+            setTimeout(function () {
+                console.log('$ARG creating screen-capture file://' + file);
+                page.render(file);
+                phantom.exit();
+            }, 10000);
+        " || return $?
+    done
 }
 
 shExampleSh
 ```
 #### output from shell
 [![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.testExampleSh.png)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
+#### output from phantomjs
+![screen-capture](https://kaizhu256.github.io/node-istanbul-lite/build/screen-capture.phantomjs.png)
+#### output from slimerjs
+![screen-capture](https://kaizhu256.github.io/node-istanbul-lite/build/screen-capture.slimerjs.png)
 
 
 
@@ -43,8 +66,9 @@ shExampleSh
 
 
 # package-listing
-- phantomjs binary dynamically downloaded from https://bitbucket.org/ariya/phantomjs/downloads
-- slimerjs binary dynamically downloaded from http://download.slimerjs.org
+- phantomjs binary dynamically downloaded from https://bitbucket.org/ariya/phantomjs/downloads/
+- slimerjs binary dynamically downloaded from http://download.slimerjs.org/releases/
+
 [![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.gitLsTree.png)](https://github.com/kaizhu256/node-phantomjs-lite)
 
 
@@ -88,14 +112,13 @@ printf 'testing slimerjs\n' && \
 [ $(./index.js slimerjs eval 'console.log(\"hello\")') = 'hello' ] && \
 printf 'passed\n'"
     },
-    "version": "2015.3.24-11"
+    "version": "2015.3.29-10"
 }
 ```
 
 
 
 # todo
-- add screen-capture example
 - none
 
 
@@ -114,12 +137,15 @@ shBuild() {
     export npm_config_mode_slimerjs=1 || return $?
     . node_modules/.bin/utility2 && shInit || return $?
 
-    #!! # run npm-test on published package
-    #!! shRun shNpmTestPublished || return $?
+    # run npm-test on published package
+    shRun shNpmTestPublished || return $?
 
     # test example shell script
-    MODE_BUILD=testExampleJs \
-        shRunScreenCapture shReadmeTestJs example.js || return $?
+    MODE_BUILD=testExampleSh \
+        shRunScreenCapture shReadmeTestSh example.sh || return $?
+    # copy phantomjs screen-capture to $npm_config_dir_build
+    cp /tmp/app/screen-capture.*.png $npm_config_dir_build || \
+        return $?
 
     # run npm-test
     MODE_BUILD=npmTest shRunScreenCapture npm test || return $?

@@ -28,5 +28,5 @@
         "postinstall": "./npm-postinstall.sh",
         "test": "node_modules/.bin/utility2 shRun shReadmePackageJsonExport && printf 'testing phantomjs\n' && [ $(./index.js phantomjs eval 'console.log(\"hello\")') = 'hello' ] && printf 'passed\n' && printf 'testing slimerjs\n' && [ $(./index.js slimerjs eval 'console.log(\"hello\")') = 'hello' ] && printf 'passed\n'"
     },
-    "version": "2015.3.24-11"
+    "version": "2015.3.29-10"
 }
