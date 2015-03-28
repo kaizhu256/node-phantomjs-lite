@@ -1,11 +1,15 @@
-phantomjs-lite [![NPM](https://img.shields.io/npm/v/phantomjs-lite.svg?style=flat-square)](https://www.npmjs.org/package/phantomjs-lite) [![travis.ci-org build status](https://api.travis-ci.org/kaizhu256/node-phantomjs-lite.svg)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
+phantomjs-lite [![NPM](https://img.shields.io/npm/v/phantomjs-lite.svg?style=flat-square)](https://www.npmjs.org/package/phantomjs-lite)
 ==============
-lightweight version of phantomjs and slimerjs with zero npm dependencies
+minimal npm installer for phantomjs and slimerjs with zero npm dependencies
 
 
 
-# quickstart
-#### to run this example, read the instruction inside the script below
+# build-status [![travis-ci.org build-status](https://api.travis-ci.org/kaizhu256/node-phantomjs-lite.svg)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
+
+
+
+# quickstart screen-capture example
+#### to run this example, follow the instruction in the script below
 ```
 # example.sh
 
@@ -39,6 +43,8 @@ shExampleSh
 
 
 # package-listing
+- phantomjs binary dynamically downloaded from https://bitbucket.org/ariya/phantomjs/downloads
+- slimerjs binary dynamically downloaded from http://download.slimerjs.org
 [![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.gitLsTree.png)](https://github.com/kaizhu256/node-phantomjs-lite)
 
 
@@ -47,17 +53,21 @@ shExampleSh
 ```
 {
     "_packageJson": true,
-    "description": "lightweight version of phantomjs and slimerjs with \
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "bin": { "phantomjs-lite" : "index.js" },
+    "description": "minimal npm installer for phantomjs and slimerjs with \
 zero npm dependencies",
     "devDependencies": {
-        "utility2": "2015.3.24-11"
+        "utility2": "2015.3.29-10"
     },
     "engines": { "node": ">=0.10 <=0.12" },
     "keywords": [
         "browser",
+        "headless",
         "light", "lightweight", "lite",
-        "phantomjs",
-        "slimerjs",
+        "minimal",
+        "phantom", "phantomjs",
+        "slimer", "slimerjs",
         "web"
     ],
     "license": "MIT",
@@ -71,8 +81,12 @@ zero npm dependencies",
         "build-ci": "node_modules/.bin/utility2 shRun shReadmeBuild",
         "postinstall": "./npm-postinstall.sh",
         "test": "node_modules/.bin/utility2 shRun shReadmePackageJsonExport && \
-printf '\ntesting phantomjs\n' && ./phantomjs test.js && \
-printf '\ntesting slimerjs\n' && ./slimerjs test.js"
+printf 'testing phantomjs\n' && \
+[ $(./index.js phantomjs eval 'console.log(\"hello\")') = 'hello' ] && \
+printf 'passed\n' && \
+printf 'testing slimerjs\n' && \
+[ $(./index.js slimerjs eval 'console.log(\"hello\")') = 'hello' ] && \
+printf 'passed\n'"
     },
     "version": "2015.3.24-11"
 }
@@ -100,12 +114,12 @@ shBuild() {
     export npm_config_mode_slimerjs=1 || return $?
     . node_modules/.bin/utility2 && shInit || return $?
 
-    # run npm-test on published package
-    shRun shNpmTestPublished || return $?
+    #!! # run npm-test on published package
+    #!! shRun shNpmTestPublished || return $?
 
     # test example shell script
-    MODE_BUILD=testExampleSh \
-        shRunScreenCapture shReadmeTestSh example.sh || return $?
+    MODE_BUILD=testExampleJs \
+        shRunScreenCapture shReadmeTestJs example.js || return $?
 
     # run npm-test
     MODE_BUILD=npmTest shRunScreenCapture npm test || return $?

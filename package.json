@@ -1,15 +1,19 @@
 {
     "_packageJson": true,
-    "description": "lightweight version of phantomjs and slimerjs with zero npm dependencies",
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "bin": { "phantomjs-lite" : "index.js" },
+    "description": "minimal npm installer for phantomjs and slimerjs with zero npm dependencies",
     "devDependencies": {
-        "utility2": "2015.3.24-11"
+        "utility2": "2015.3.29-10"
     },
     "engines": { "node": ">=0.10 <=0.12" },
     "keywords": [
         "browser",
+        "headless",
         "light", "lightweight", "lite",
-        "phantomjs",
-        "slimerjs",
+        "minimal",
+        "phantom", "phantomjs",
+        "slimer", "slimerjs",
         "web"
     ],
     "license": "MIT",
@@ -22,7 +26,7 @@
     "scripts": {
         "build-ci": "node_modules/.bin/utility2 shRun shReadmeBuild",
         "postinstall": "./npm-postinstall.sh",
-        "test": "node_modules/.bin/utility2 shRun shReadmePackageJsonExport && printf '\ntesting phantomjs\n' && ./phantomjs test.js && printf '\ntesting slimerjs\n' && ./slimerjs test.js"
+        "test": "node_modules/.bin/utility2 shRun shReadmePackageJsonExport && printf 'testing phantomjs\n' && [ $(./index.js phantomjs eval 'console.log(\"hello\")') = 'hello' ] && printf 'passed\n' && printf 'testing slimerjs\n' && [ $(./index.js slimerjs eval 'console.log(\"hello\")') = 'hello' ] && printf 'passed\n'"
     },
     "version": "2015.3.24-11"
 }
