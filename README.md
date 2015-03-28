@@ -15,8 +15,7 @@ minimal npm installer for phantomjs and slimerjs with zero npm dependencies
 
 # this shell script will
     # npm install phantomjs-lite
-    # create test-script foo.js
-    # run offline-coverage for foo.js and create an offline-report
+    # screen-capture http://phantomjs.org/screen-capture.html
 
 # instruction
     # 1. copy and paste this entire shell script into a console and press enter
@@ -24,7 +23,7 @@ minimal npm installer for phantomjs and slimerjs with zero npm dependencies
 
 shExampleSh() {
     # npm install phantomjs-lite
-    npm install phantomjs-lite || return $?
+    npm install phantomjs-lite@2015.3.29-10 || return $?
 
     # screen-capture http://phantomjs.org/screen-capture.html
     local ARG || return $?
