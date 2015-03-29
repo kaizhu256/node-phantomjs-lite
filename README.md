@@ -31,21 +31,25 @@ shExampleSh() {
     local ARG0 || return $?
     for ARG0 in phantomjs slimerjs
     do
-        node_modules/.bin/phantomjs-lite $ARG0 evalWithoutExit "
+        node_modules/.bin/phantomjs-lite $ARG0 eval "
             var file, page, url;
             file = '$(pwd)/screen-capture.$ARG0.png';
             page = require('webpage').create();
             url = 'http://phantomjs.org/screen-capture.html';
             page.clipRect = { height: 768, left: 0, top: 0, width: 1024 };
             page.viewportSize = { height: 768, width: 1024 };
-            console.log('$ARG0 opening ' + url);
             page.open(url, function () {
+                console.log('$ARG0 opened ' + url);
+                setTimeout(function () {
+                    page.render(file);
+                    console.log('$ARG0 created screen-capture file://' + file);
+                    phantom.exit();
+                }, 10000);
             });
             setTimeout(function () {
-                console.log('$ARG0 creating screen-capture file://' + file);
-                page.render(file);
-                phantom.exit();
-            }, 10000);
+                console.error('$ARG0 timeout error');
+                phantom.exit(1);
+            }, 30000);
         " || return $?
     done
 }
@@ -108,12 +112,14 @@ zero npm dependencies",
         "test": "node_modules/.bin/utility2 shRun shReadmePackageJsonExport && \
 for ARG0 in phantomjs slimerjs; \
 do \
-    printf \"testing $ARG0\n\" || exit $?; \
-    [ $(./index.js $ARG0 eval 'console.log(\"hello\")') = 'hello' ] || exit $?; \
-    printf \"passed\n\" || exit $?; \
+printf \"testing $ARG0\n\" || exit $?; \
+[ \
+$(./index.js $ARG0 eval 'console.log(\"hello\"); phantom.exit();') = 'hello' \
+] || exit $?; \
+printf \"passed\n\" || exit $?; \
 done"
     },
-    "version": "2015.3.29-11"
+    "version": "2015.3.29-12"
 }
 ```
 

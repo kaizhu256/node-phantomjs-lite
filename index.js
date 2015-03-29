@@ -39,11 +39,15 @@
         module.exports.__dirname = __dirname;
         module.exports.processSpawn = function (arg0, argList, options) {
             arg0 = arg0 || process.argv[2];
+            if (arg0 === 'alljs') {
+                module.exports.processSpawn('phantomjs', argList, options);
+                module.exports.processSpawn('slimerjs', argList, options);
+                return;
+            }
             argList = argList || process.argv.slice(3);
             options = options || { stdio: [0, 1, 2] };
             switch (argList[0]) {
             case 'eval':
-            case 'evalWithoutExit':
                 argList = [__filename].concat(argList);
                 break;
             }
@@ -63,14 +67,6 @@
         local.system = require('system');
         switch (local.system.args[1]) {
         case 'eval':
-            try {
-                eval(local.system.args[2]);
-            } catch (errorCaught) {
-                console.error(errorCaught.stack);
-            }
-            self.phantom.exit();
-            break;
-        case 'evalWithoutExit':
             eval(local.system.args[2]);
             break;
         default:
