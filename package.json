@@ -28,5 +28,5 @@
         "postinstall": "./npm-postinstall.sh",
         "test": "node_modules/.bin/utility2 shRun shReadmePackageJsonExport && for ARG0 in phantomjs slimerjs; do printf \"testing $ARG0\n\" || exit $?; [ $(./index.js $ARG0 eval 'console.log(\"hello\"); phantom.exit();') = 'hello' ] || exit $?; printf \"passed\n\" || exit $?; done"
     },
-    "version": "2015.3.29-12"
+    "version": "2015.3.29-13"
 }

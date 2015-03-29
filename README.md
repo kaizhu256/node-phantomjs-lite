@@ -25,7 +25,7 @@ minimal npm installer for phantomjs and slimerjs with zero npm dependencies
 
 shExampleSh() {
     # npm install phantomjs-lite
-    npm install phantomjs-lite@2015.3.29-12 || return $?
+    npm install phantomjs-lite@2015.3.29-13 || return $?
 
     # screen-capture http://phantomjs.org/screen-capture.html
     local ARG0 || return $?
@@ -119,7 +119,7 @@ $(./index.js $ARG0 eval 'console.log(\"hello\"); phantom.exit();') = 'hello' \
 printf \"passed\n\" || exit $?; \
 done"
     },
-    "version": "2015.3.29-12"
+    "version": "2015.3.29-13"
 }
 ```
 
