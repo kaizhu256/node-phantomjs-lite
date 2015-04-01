@@ -118,6 +118,7 @@ shExampleSh
     "scripts": {
         "build-ci": "node_modules/.bin/utility2 shRun shReadmeBuild",
         "postinstall": "./npm-postinstall.sh",
+        "preinstall": "touch phantomjs slimerjs",
         "test": "node_modules/.bin/utility2 shRun shReadmePackageJsonExport && \
 for ARG0 in phantomjs slimerjs; \
 do \
@@ -128,7 +129,7 @@ $(./index.js $ARG0 eval 'console.log(\"hello\"); phantom.exit();') = 'hello' \
 printf \"passed\n\" || exit $?; \
 done"
     },
-    "version": "2015.4.1-10"
+    "version": "2015.4.1-12"
 }
 ```
 
