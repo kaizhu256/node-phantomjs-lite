@@ -92,7 +92,8 @@ shExampleSh
         "phantomjs" : "phantomjs",
         "slimerjs" : "slimerjs"
     },
-    "description": "minimal npm installer for phantomjs and slimerjs with zero npm dependencies",
+    "description": "minimal npm installer for phantomjs and slimerjs \
+with zero npm dependencies",
     "devDependencies": {
         "utility2": "2015.3.30-10"
     },
