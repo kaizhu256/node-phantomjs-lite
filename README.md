@@ -25,7 +25,7 @@ minimal npm installer for phantomjs and slimerjs with zero npm dependencies
 
 shExampleSh() {
     # npm install phantomjs-lite
-    npm install phantomjs-lite@2015.3.29-13 || return $?
+    npm install phantomjs-lite || return $?
 
     # screen-capture http://phantomjs.org/screen-capture.html
     local ARG0 || return $?
@@ -36,16 +36,21 @@ shExampleSh() {
             file = '$(pwd)/screen-capture.$ARG0.png';
             page = require('webpage').create();
             url = 'http://phantomjs.org/screen-capture.html';
+            // init webpage size and offset
             page.clipRect = { height: 768, left: 0, top: 0, width: 1024 };
             page.viewportSize = { height: 768, width: 1024 };
+            // open webpage
             page.open(url, function () {
                 console.log('$ARG0 opened ' + url);
+                // after opening webpage,
+                // wait 1000 ms and then create screen-capture and exit
                 setTimeout(function () {
                     page.render(file);
                     console.log('$ARG0 created screen-capture file://' + file);
                     phantom.exit();
-                }, 10000);
+                }, 1000);
             });
+            // init 30000 ms timeout error
             setTimeout(function () {
                 console.error('$ARG0 timeout error');
                 phantom.exit(1);
@@ -53,7 +58,6 @@ shExampleSh() {
         " || return $?
     done
 }
-
 shExampleSh
 ```
 #### output from shell
@@ -83,19 +87,24 @@ shExampleSh
 {
     "_packageJson": true,
     "author": "kai zhu <kaizhu256@gmail.com>",
-    "bin": { "phantomjs-lite" : "index.js" },
-    "description": "minimal npm installer for phantomjs and slimerjs with \
-zero npm dependencies",
+    "bin": {
+        "phantomjs-lite" : "index.js",
+        "phantomjs" : "phantomjs",
+        "slimerjs" : "slimerjs"
+    },
+    "description": "minimal npm installer for phantomjs and slimerjs with zero npm dependencies",
     "devDependencies": {
-        "utility2": "2015.3.29-10"
+        "utility2": "2015.3.30-10"
     },
     "engines": { "node": ">=0.10 <=0.12" },
     "keywords": [
         "browser",
+        "capture",
         "headless",
         "light", "lightweight", "lite",
         "minimal",
         "phantom", "phantomjs",
+        "screen", "screen-capture", "screencapture", "screenshot",
         "slimer", "slimerjs",
         "web"
     ],
@@ -119,7 +128,7 @@ $(./index.js $ARG0 eval 'console.log(\"hello\"); phantom.exit();') = 'hello' \
 printf \"passed\n\" || exit $?; \
 done"
     },
-    "version": "2015.3.29-13"
+    "version": "2015.4.1-10"
 }
 ```
 

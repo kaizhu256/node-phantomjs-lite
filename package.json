@@ -1,18 +1,24 @@
 {
     "_packageJson": true,
     "author": "kai zhu <kaizhu256@gmail.com>",
-    "bin": { "phantomjs-lite" : "index.js" },
+    "bin": {
+        "phantomjs-lite" : "index.js",
+        "phantomjs" : "phantomjs",
+        "slimerjs" : "slimerjs"
+    },
     "description": "minimal npm installer for phantomjs and slimerjs with zero npm dependencies",
     "devDependencies": {
-        "utility2": "2015.3.29-10"
+        "utility2": "2015.3.30-10"
     },
     "engines": { "node": ">=0.10 <=0.12" },
     "keywords": [
         "browser",
+        "capture",
         "headless",
         "light", "lightweight", "lite",
         "minimal",
         "phantom", "phantomjs",
+        "screen", "screen-capture", "screencapture", "screenshot",
         "slimer", "slimerjs",
         "web"
     ],
@@ -28,5 +34,5 @@
         "postinstall": "./npm-postinstall.sh",
         "test": "node_modules/.bin/utility2 shRun shReadmePackageJsonExport && for ARG0 in phantomjs slimerjs; do printf \"testing $ARG0\n\" || exit $?; [ $(./index.js $ARG0 eval 'console.log(\"hello\"); phantom.exit();') = 'hello' ] || exit $?; printf \"passed\n\" || exit $?; done"
     },
-    "version": "2015.3.29-13"
+    "version": "2015.4.1-10"
 }
