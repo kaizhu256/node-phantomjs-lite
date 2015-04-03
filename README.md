@@ -31,7 +31,7 @@ shExampleSh() {
     local ARG0 || return $?
     for ARG0 in phantomjs slimerjs
     do
-        node_modules/.bin/phantomjs-lite $ARG0 eval "
+        node_modules/phantomjs-lite/index.js $ARG0 eval "
             var file, page, url;
             file = '$(pwd)/screen-capture.$ARG0.png';
             page = require('webpage').create();
@@ -95,7 +95,7 @@ shExampleSh
     "description": "minimal npm installer for phantomjs and slimerjs \
 with zero npm dependencies",
     "devDependencies": {
-        "utility2": "2015.3.30-10"
+        "utility2": "2015.4.2-11"
     },
     "engines": { "node": ">=0.10 <=0.12" },
     "keywords": [
@@ -130,7 +130,7 @@ $(./index.js $ARG0 eval 'console.log(\"hello\"); phantom.exit();') = 'hello' \
 printf \"passed\n\" || exit $?; \
 done"
     },
-    "version": "2015.4.1-12"
+    "version": "2015.4.3-10"
 }
 ```
 
