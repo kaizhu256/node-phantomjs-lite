@@ -151,6 +151,8 @@ done"
 # build.sh
 # this shell script will run the build for this package
 shBuild() {
+    # this function will run the main build
+
     # init env
     export npm_config_mode_slimerjs=1 || return $?
     . node_modules/.bin/utility2 && shInit || return $?
@@ -175,6 +177,7 @@ shBuild
 
 # save exit-code
 EXIT_CODE=$?
+[ "$(node --version)" \< "v0.12" ] && exit $EXIT_CODE
 
 shBuildCleanup() {
     # this function will cleanup build-artifacts in local build dir
