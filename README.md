@@ -95,7 +95,7 @@ shExampleSh
     "description": "minimal npm installer for phantomjs and slimerjs \
 with zero npm dependencies",
     "devDependencies": {
-        "utility2": "2015.4.2-11"
+        "utility2": "2015.4.9-a"
     },
     "engines": { "node": ">=0.10 <=0.12" },
     "keywords": [
@@ -130,7 +130,7 @@ $(./index.js $ARG0 eval 'console.log(\"hello\"); phantom.exit();') = 'hello' \
 printf \"passed\n\" || exit $?; \
 done"
     },
-    "version": "2015.4.3-10"
+    "version": "2015.4.9-a"
 }
 ```
 
