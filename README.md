@@ -95,7 +95,7 @@ shExampleSh
     "description": "minimal npm installer for phantomjs and slimerjs \
 with zero npm dependencies",
     "devDependencies": {
-        "utility2": "2015.4.9-a"
+        "utility2": "2015.4.18-b"
     },
     "engines": { "node": ">=0.10 <=0.12" },
     "keywords": [

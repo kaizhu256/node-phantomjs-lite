@@ -39,7 +39,7 @@ shNpmPostinstall() {
         FILE_BIN=slimerjs-0.9.5/slimerjs
         FILE_LINK=slimerjs
         FILE_TMP=$TMPDIR2/slimerjs-0.9.5.zip
-        FILE_URL=http://download.slimerjs.org/releases/0.9.5/slimerjs-0.9.5.zip
+        FILE_URL=https://download.slimerjs.org/releases/0.9.5/slimerjs-0.9.5.zip
         FILE_UNZIP="unzip -q"
         shDownloadAndInstall || return $?
         ;;
@@ -55,7 +55,7 @@ shNpmPostinstall() {
         FILE_BIN=slimerjs-0.9.5/slimerjs
         FILE_LINK=slimerjs
         FILE_TMP=$TMPDIR2/slimerjs-0.9.5.zip
-        FILE_URL=http://download.slimerjs.org/releases/0.9.5/slimerjs-0.9.5.zip
+        FILE_URL=https://download.slimerjs.org/releases/0.9.5/slimerjs-0.9.5.zip
         FILE_UNZIP="unzip -q"
         shDownloadAndInstall || return $?
         ;;
