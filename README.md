@@ -130,7 +130,7 @@ $(./index.js $ARG0 eval 'console.log(\"hello\"); phantom.exit();') = 'hello' \
 printf \"passed\n\" || exit $?; \
 done"
     },
-    "version": "2015.4.9-a"
+    "version": "2015.4.18-a"
 }
 ```
 
@@ -170,6 +170,9 @@ shBuild() {
     # run npm-test
     MODE_BUILD=npmTest shRunScreenCapture npm test || return $?
 
+    # do not continue if running legacy node
+    [ "$(node --version)" \< "v0.12" ] && return
+
     # if number of commits > 1024, then squash older commits
     shRun shGitBackupAndSquashAndPush 1024 > /dev/null || return $?
 }
@@ -177,6 +180,8 @@ shBuild
 
 # save exit-code
 EXIT_CODE=$?
+
+# do not continue if running legacy node
 [ "$(node --version)" \< "v0.12" ] && exit $EXIT_CODE
 
 shBuildCleanup() {
