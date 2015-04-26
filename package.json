@@ -8,15 +8,13 @@
     },
     "description": "minimal npm installer for phantomjs and slimerjs with zero npm dependencies",
     "devDependencies": {
-        "utility2": "2015.4.18-b"
+        "utility2": "2015.4.26-c"
     },
     "engines": { "node": ">=0.10 <=0.12" },
     "keywords": [
         "browser",
         "capture",
-        "headless",
-        "light", "lightweight", "lite",
-        "minimal",
+        "headless", "headless-browser",
         "phantom", "phantomjs",
         "screen", "screen-capture", "screencapture", "screenshot",
         "slimer", "slimerjs",
@@ -35,5 +33,5 @@
         "preinstall": "touch phantomjs slimerjs",
         "test": "node_modules/.bin/utility2 shRun shReadmePackageJsonExport && for ARG0 in phantomjs slimerjs; do printf \"testing $ARG0\n\" || exit $?; [ $(./index.js $ARG0 eval 'console.log(\"hello\"); phantom.exit();') = 'hello' ] || exit $?; printf \"passed\n\" || exit $?; done"
     },
-    "version": "2015.4.18-a"
+    "version": "2015.4.26-c"
 }

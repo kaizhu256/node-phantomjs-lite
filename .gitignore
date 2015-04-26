@@ -2,7 +2,7 @@
 .DS_Store
 .travis.yml
 Procfile
-node_modules/
+node_modules
 phantomjs*
 slimerjs*
-tmp/
+tmp
