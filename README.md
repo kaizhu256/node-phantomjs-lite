@@ -1,23 +1,42 @@
-phantomjs-lite [![NPM](https://img.shields.io/npm/v/phantomjs-lite.svg?style=flat-square)](https://www.npmjs.org/package/phantomjs-lite)
+phantomjs-lite
 ==============
 minimal npm installer for phantomjs and slimerjs with zero npm dependencies
+
+[![NPM](https://img.shields.io/npm/v/phantomjs-lite.svg?style=flat-square)](https://www.npmjs.org/package/phantomjs-lite)
 
 
 
 # screen-capture
-![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.slimerjs.png)
+[![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.slimerjs.png)](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.slimerjs.png)
 
 
 
 # build-status [![travis-ci.org build-status](https://api.travis-ci.org/kaizhu256/node-phantomjs-lite.svg)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
-| git-branch | [master](https://github.com/kaizhu256/node-phantomjs-lite/tree/master) | [beta](https://github.com/kaizhu256/node-phantomjs-lite/tree/beta) | [alpha](https://github.com/kaizhu256/node-phantomjs-lite/tree/alpha)|
-|:--|:--|:--|:--|
-| build-artifacts | [![build-artifacts](https://kaizhu256.github.io/node-phantomjs-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-phantomjs-lite/tree/gh-pages/build..master..travis-ci.org) | [![build-artifacts](https://kaizhu256.github.io/node-phantomjs-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-phantomjs-lite/tree/gh-pages/build..beta..travis-ci.org) | [![build-artifacts](https://kaizhu256.github.io/node-phantomjs-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-phantomjs-lite/tree/gh-pages/build..alpha..travis-ci.org)|
+
+| git-branch : | [master](https://github.com/kaizhu256/node-phantomjs-lite/tree/master) | [beta](https://github.com/kaizhu256/node-phantomjs-lite/tree/beta) | [alpha](https://github.com/kaizhu256/node-phantomjs-lite/tree/alpha)|
+|--:|:--|:--|:--|
+| build-artifacts : | [![build-artifacts](https://kaizhu256.github.io/node-phantomjs-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-phantomjs-lite/tree/gh-pages/build..master..travis-ci.org) | [![build-artifacts](https://kaizhu256.github.io/node-phantomjs-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-phantomjs-lite/tree/gh-pages/build..beta..travis-ci.org) | [![build-artifacts](https://kaizhu256.github.io/node-phantomjs-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-phantomjs-lite/tree/gh-pages/build..alpha..travis-ci.org)|
+
+#### master branch
+- stable branch
+- HEAD should be tagged, npm-published package
+
+#### beta branch
+- stable branch
+- HEAD should be latest, npm-published package
+
+#### alpha branch
+- unstable branch
+- HEAD is arbitrary
+- commit history may be rewritten
 
 
 
 # quickstart screen-capture example
+
 #### to run this example, follow the instruction in the script below
+- example.sh
+
 ```
 # example.sh
 
@@ -67,10 +86,13 @@ shExampleSh() {
 }
 shExampleSh
 ```
+
 #### output from shell
 [![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.testExampleSh.png)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
+
 #### output from phantomjs
 [![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.phantomjs.png)](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.phantomjs.png)
+
 #### output from slimerjs
 [![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.slimerjs.png)](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.slimerjs.png)
 
@@ -102,7 +124,7 @@ shExampleSh
     "description": "minimal npm installer for phantomjs and slimerjs \
 with zero npm dependencies",
     "devDependencies": {
-        "utility2": "2015.4.26-c"
+        "utility2": "2015.5.15-f"
     },
     "engines": { "node": ">=0.10 <=0.12" },
     "keywords": [
@@ -110,7 +132,7 @@ with zero npm dependencies",
         "capture",
         "headless", "headless-browser",
         "phantom", "phantomjs",
-        "screen", "screen-capture", "screencapture", "screenshot",
+        "scrape", "screen", "screen-capture", "screencapture", "screenshot",
         "slimer", "slimerjs",
         "web"
     ],
@@ -125,7 +147,7 @@ with zero npm dependencies",
         "build-ci": "node_modules/.bin/utility2 shRun shReadmeBuild",
         "postinstall": "./npm-postinstall.sh",
         "preinstall": "touch phantomjs slimerjs",
-        "test": "node_modules/.bin/utility2 shRun shReadmePackageJsonExport && \
+        "test": "node_modules/.bin/utility2 shRun shReadmeExportPackageJson && \
 for ARG0 in phantomjs slimerjs; \
 do \
 printf \"testing $ARG0\n\" || exit $?; \
@@ -135,7 +157,7 @@ $(./index.js $ARG0 eval 'console.log(\"hello\"); phantom.exit();') = 'hello' \
 printf \"passed\n\" || exit $?; \
 done"
     },
-    "version": "2015.4.26-c"
+    "version": "2015.5.28-b"
 }
 ```
 
@@ -146,12 +168,9 @@ done"
 
 
 
-# change since 96f766e5
-- npm publish 2015.4.26-c
-- transpose build-status table
-- add build-artifact link in README.md
-- add link to screen-capture in README.md
-- update devDependency utility2@2015.4.26-b
+# change since 9d7b03fb
+- npm publish 2015.5.28-b
+- update README.md
 - none
 
 
@@ -162,12 +181,14 @@ done"
 
 
 # internal build-script
+- build.sh
+
 ```
 # build.sh
+
 # this shell script will run the build for this package
 shBuild() {
     # this function will run the main build
-
     # init env
     export npm_config_mode_slimerjs=1 || return $?
     . node_modules/.bin/utility2 && shInit || return $?
@@ -185,7 +206,7 @@ shBuild() {
     # run npm-test
     MODE_BUILD=npmTest shRunScreenCapture npm test || return $?
 
-    # do not continue if running legacy-node
+    # if running legacy-node, then do not continue
     [ "$(node --version)" \< "v0.12" ] && return
 
     # if number of commits > 1024, then squash older commits
@@ -195,9 +216,6 @@ shBuild
 
 # save exit-code
 EXIT_CODE=$?
-
-# do not continue if running legacy-node
-[ "$(node --version)" \< "v0.12" ] && exit $EXIT_CODE
 
 shBuildCleanup() {
     # this function will cleanup build-artifacts in local build dir
@@ -213,6 +231,9 @@ shBuildGithubUploadCleanup() {
     # this function will cleanup build-artifacts in local gh-pages repo
     return
 }
+
+# if running legacy-node, then do not continue
+[ "$(node --version)" \< "v0.12" ] && exit $EXIT_CODE
 
 # upload build-artifacts to github,
 # and if number of commits > 16, then squash older commits

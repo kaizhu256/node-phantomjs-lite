@@ -53,7 +53,7 @@
             }
             return require('child_process').spawn(__dirname + '/' + arg0, argList, options);
         };
-        // run main module
+        // run the cli
         if (module === require.main) {
             module.exports.processSpawn();
         }
