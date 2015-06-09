@@ -1,6 +1,6 @@
 phantomjs-lite
 ==============
-minimal npm installer for phantomjs and slimerjs with zero npm dependencies
+minimal npm installer for phantomjs and slimerjs with zero npm-dependencies
 
 [![NPM](https://img.shields.io/npm/v/phantomjs-lite.svg?style=flat-square)](https://www.npmjs.org/package/phantomjs-lite)
 
@@ -37,7 +37,7 @@ minimal npm installer for phantomjs and slimerjs with zero npm dependencies
 #### to run this example, follow the instruction in the script below
 - example.sh
 
-```
+```shell
 # example.sh
 
 # this shell script will
@@ -112,9 +112,8 @@ shExampleSh
 
 
 # package.json
-```
+```json
 {
-    "_packageJson": true,
     "author": "kai zhu <kaizhu256@gmail.com>",
     "bin": {
         "phantomjs-lite" : "index.js",
@@ -122,9 +121,9 @@ shExampleSh
         "slimerjs" : "slimerjs"
     },
     "description": "minimal npm installer for phantomjs and slimerjs \
-with zero npm dependencies",
+with zero npm-dependencies",
     "devDependencies": {
-        "utility2": "2015.5.15-f"
+        "utility2": "2015.6.1-b"
     },
     "engines": { "node": ">=0.10 <=0.12" },
     "keywords": [
@@ -157,7 +156,7 @@ $(./index.js $ARG0 eval 'console.log(\"hello\"); phantom.exit();') = 'hello' \
 printf \"passed\n\" || exit $?; \
 done"
     },
-    "version": "2015.5.28-b"
+    "version": "1.9.8-2015.6.1-b"
 }
 ```
 
@@ -168,9 +167,10 @@ done"
 
 
 
-# change since 9d7b03fb
-- npm publish 2015.5.28-b
-- update README.md
+# change since f31b47ae
+- npm publish 1.9.8-2015.6.1-b
+- sync versioning with phantomjs-binary
+- update README.md with syntax-highlighted code-blocks
 - none
 
 
@@ -183,7 +183,7 @@ done"
 # internal build-script
 - build.sh
 
-```
+```shell
 # build.sh
 
 # this shell script will run the build for this package
@@ -194,7 +194,7 @@ shBuild() {
     . node_modules/.bin/utility2 && shInit || return $?
 
     # run npm-test on published package
-    shRun shNpmTestPublished || return $?
+    shNpmTestPublished || return $?
 
     # test example shell script
     MODE_BUILD=testExampleSh \
@@ -210,7 +210,7 @@ shBuild() {
     [ "$(node --version)" \< "v0.12" ] && return
 
     # if number of commits > 1024, then squash older commits
-    shRun shGitBackupAndSquashAndPush 1024 > /dev/null || return $?
+    shGitBackupAndSquashAndPush 1024 > /dev/null || return $?
 }
 shBuild
 
@@ -237,7 +237,7 @@ shBuildGithubUploadCleanup() {
 
 # upload build-artifacts to github,
 # and if number of commits > 16, then squash older commits
-COMMIT_LIMIT=16 shRun shBuildGithubUpload || exit $?
+COMMIT_LIMIT=16 shBuildGithubUpload || exit $?
 
 # exit with $EXIT_CODE
 exit $EXIT_CODE
