@@ -123,9 +123,8 @@ shExampleSh
     "description": "minimal npm installer for phantomjs and slimerjs \
 with zero npm-dependencies",
     "devDependencies": {
-        "utility2": "2015.6.1-b"
+        "utility2": "^2015.6.1-b"
     },
-    "engines": { "node": ">=0.10 <=0.12" },
     "keywords": [
         "browser",
         "capture",
@@ -156,7 +155,7 @@ $(./index.js $ARG0 eval 'console.log(\"hello\"); phantom.exit();') = 'hello' \
 printf \"passed\n\" || exit $?; \
 done"
     },
-    "version": "1.9.8-2015.6.1-b"
+    "version": "1.9.8-20150610b"
 }
 ```
 
@@ -167,10 +166,9 @@ done"
 
 
 
-# change since f31b47ae
-- npm publish 1.9.8-2015.6.1-b
-- sync versioning with phantomjs-binary
-- update README.md with syntax-highlighted code-blocks
+# change since fd2af2aa
+- npm publish 1.9.8-20150610b
+- remove legacy node build dependency
 - none
 
 
@@ -205,12 +203,6 @@ shBuild() {
 
     # run npm-test
     MODE_BUILD=npmTest shRunScreenCapture npm test || return $?
-
-    # if running legacy-node, then do not continue
-    [ "$(node --version)" \< "v0.12" ] && return
-
-    # if number of commits > 1024, then squash older commits
-    shGitBackupAndSquashAndPush 1024 > /dev/null || return $?
 }
 shBuild
 
@@ -231,9 +223,6 @@ shBuildGithubUploadCleanup() {
     # this function will cleanup build-artifacts in local gh-pages repo
     return
 }
-
-# if running legacy-node, then do not continue
-[ "$(node --version)" \< "v0.12" ] && exit $EXIT_CODE
 
 # upload build-artifacts to github,
 # and if number of commits > 16, then squash older commits
