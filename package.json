@@ -31,5 +31,5 @@
         "preinstall": "touch phantomjs slimerjs",
         "test": "node_modules/.bin/utility2 shRun shReadmeExportPackageJson && for ARG0 in phantomjs slimerjs; do printf \"testing $ARG0\n\" || exit $?; [ $(./index.js $ARG0 eval 'console.log(\"hello\"); phantom.exit();') = 'hello' ] || exit $?; printf \"passed\n\" || exit $?; done"
     },
-    "version": "1.9.8-20150610b"
+    "version": "2015.6.1"
 }

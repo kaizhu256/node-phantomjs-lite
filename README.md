@@ -155,7 +155,7 @@ $(./index.js $ARG0 eval 'console.log(\"hello\"); phantom.exit();') = 'hello' \
 printf \"passed\n\" || exit $?; \
 done"
     },
-    "version": "1.9.8-20150610b"
+    "version": "2015.6.1"
 }
 ```
 
@@ -166,9 +166,9 @@ done"
 
 
 
-# change since fd2af2aa
-- npm publish 1.9.8-20150610b
-- remove legacy node build dependency
+# change since 2366ee45
+- npm publish 2015.6.1
+- fix version breakage with latest npm install
 - none
 
 
