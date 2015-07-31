@@ -22,7 +22,7 @@ minimal npm installer for phantomjs and slimerjs with zero npm-dependencies
 - HEAD should be tagged, npm-published package
 
 #### beta branch
-- stable branch
+- semi-stable branch
 - HEAD should be latest, npm-published package
 
 #### alpha branch
@@ -123,7 +123,7 @@ shExampleSh
     "description": "minimal npm installer for phantomjs and slimerjs \
 with zero npm-dependencies",
     "devDependencies": {
-        "utility2": "^2015.6.1-b"
+        "utility2": "^2015.7.10"
     },
     "keywords": [
         "browser",
@@ -155,7 +155,7 @@ $(./index.js $ARG0 eval 'console.log(\"hello\"); phantom.exit();') = 'hello' \
 printf \"passed\n\" || exit $?; \
 done"
     },
-    "version": "2015.6.1"
+    "version": "2015.7.1"
 }
 ```
 
@@ -166,9 +166,10 @@ done"
 
 
 
-# change since 2366ee45
-- npm publish 2015.6.1
-- fix version breakage with latest npm install
+# change since 91757119
+- npm publish 2015.7.1
+- update README.md
+- update dependencies
 - none
 
 
@@ -185,6 +186,7 @@ done"
 # build.sh
 
 # this shell script will run the build for this package
+
 shBuild() {
     # this function will run the main build
     # init env
@@ -192,7 +194,7 @@ shBuild() {
     . node_modules/.bin/utility2 && shInit || return $?
 
     # run npm-test on published package
-    shNpmTestPublished || return $?
+    shRun shNpmTestPublished || return $?
 
     # test example shell script
     MODE_BUILD=testExampleSh \
