@@ -1,0 +1,17 @@
+<svg height="222" width="720" xmlns="http://www.w3.org/2000/svg">
+<rect height="222" fill="#555" width="720"></rect>
+<text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
+<tspan x="10" y="26"></tspan>
+<tspan x="10" y="42">&gt; phantomjs-lite@2015.7.1 test /home/travis/build/kaizhu256/node-phantomjs-lite</tspan>
+<tspan x="10" y="58">&gt; utility2 shRun shReadmeExportPackageJson &amp;&amp; for ARG0 in phantomjs slimerjs; do printf "testing\</tspan>
+<tspan x="10" y="74"> $ARG0</tspan>
+<tspan x="10" y="90">" || exit $?; [ $(./index.js $ARG0 eval 'console.log("hello"); phantom.exit();') = 'hello' ] || \</tspan>
+<tspan x="10" y="106">exit $?; printf "passed</tspan>
+<tspan x="10" y="122">" || exit $?; done</tspan>
+<tspan x="10" y="138"></tspan>
+<tspan x="10" y="154">testing phantomjs</tspan>
+<tspan x="10" y="170">passed</tspan>
+<tspan x="10" y="186">testing slimerjs</tspan>
+<tspan x="10" y="202">passed</tspan>
+</text>
+</svg>
