@@ -6,7 +6,7 @@ shDownloadAndInstall() {
         # check if unzip is installed
         if ! (unzip > /dev/null 2>&1)
         then
-            printf "phantomjs-lite requires 'unzip' to install\n" || return $?
+            printf "ERROR - phantomjs-lite requires 'unzip' to install\n" 1>&2 || return $?
             return 1
         fi
         # download phantomjs

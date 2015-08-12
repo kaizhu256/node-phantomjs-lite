@@ -2,7 +2,7 @@ phantomjs-lite
 ==============
 minimal npm installer for phantomjs and slimerjs with zero npm-dependencies
 
-[![NPM](https://img.shields.io/npm/v/phantomjs-lite.svg?style=flat-square)](https://www.npmjs.org/package/phantomjs-lite)
+[![NPM](https://img.shields.io/npm/v/node-phantomjs-lite.svg?style=flat-square)](https://www.npmjs.org/package/node-phantomjs-lite)
 
 
 
@@ -29,6 +29,11 @@ minimal npm installer for phantomjs and slimerjs with zero npm-dependencies
 - unstable branch
 - HEAD is arbitrary
 - commit history may be rewritten
+
+
+
+# documentation
+- requires unzip to be installed on os
 
 
 
@@ -88,7 +93,7 @@ shExampleSh
 ```
 
 #### output from shell
-[![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.testExampleSh.png)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
+[![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.testExampleSh.svg)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
 
 #### output from phantomjs
 [![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.phantomjs.png)](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.phantomjs.png)
@@ -107,7 +112,7 @@ shExampleSh
 - phantomjs binary dynamically downloaded from https://bitbucket.org/ariya/phantomjs/downloads/
 - slimerjs binary dynamically downloaded from https://download.slimerjs.org/releases/
 
-[![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.gitLsTree.png)](https://github.com/kaizhu256/node-phantomjs-lite)
+[![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.gitLsTree.svg)](https://github.com/kaizhu256/node-phantomjs-lite)
 
 
 
@@ -123,7 +128,7 @@ shExampleSh
     "description": "minimal npm installer for phantomjs and slimerjs \
 with zero npm-dependencies",
     "devDependencies": {
-        "utility2": "^2015.7.10"
+        "utility2": "^2015.8.3"
     },
     "keywords": [
         "browser",
@@ -155,27 +160,27 @@ $(./index.js $ARG0 eval 'console.log(\"hello\"); phantom.exit();') = 'hello' \
 printf \"passed\n\" || exit $?; \
 done"
     },
-    "version": "2015.7.1"
+    "version": "2015.8.1"
 }
 ```
 
 
 
 # todo
+- upgrade to slimerjs@0.9.6
 - none
 
 
 
-# change since 91757119
-- npm publish 2015.7.1
-- update README.md
-- update dependencies
+# change since 66e473e4
+- npm publish 2015.8.1
+- replace some screen-captures with svg
 - none
 
 
 
 # changelog of last 50 commits
-[![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.gitLog.png)](https://github.com/kaizhu256/node-phantomjs-lite/commits)
+[![screen-capture](https://kaizhu256.github.io/node-phantomjs-lite/build/screen-capture.gitLog.svg)](https://github.com/kaizhu256/node-phantomjs-lite/commits)
 
 
 
@@ -197,11 +202,9 @@ shBuild() {
     shRun shNpmTestPublished || return $?
 
     # test example shell script
-    MODE_BUILD=testExampleSh \
-        shRunScreenCapture shReadmeTestSh example.sh || return $?
+    MODE_BUILD=testExampleSh shRunScreenCapture shReadmeTestSh example.sh || return $?
     # copy phantomjs screen-capture to $npm_config_dir_build
-    cp /tmp/app/screen-capture.*.png $npm_config_dir_build || \
-        return $?
+    cp /tmp/app/screen-capture.*.png $npm_config_dir_build || return $?
 
     # run npm-test
     MODE_BUILD=npmTest shRunScreenCapture npm test || return $?
@@ -210,26 +213,11 @@ shBuild
 
 # save exit-code
 EXIT_CODE=$?
-
-shBuildCleanup() {
-    # this function will cleanup build-artifacts in local build dir
-    # create package-listing
-    MODE_BUILD=gitLsTree shRunScreenCapture shGitLsTree || return $?
-    # create recent changelog of last 50 commits
-    MODE_BUILD=gitLog shRunScreenCapture git log -50 --pretty="%ai\u000a%B" || \
-        return $?
-}
-shBuildCleanup || exit $?
-
-shBuildGithubUploadCleanup() {
-    # this function will cleanup build-artifacts in local gh-pages repo
-    return
-}
-
-# upload build-artifacts to github,
-# and if number of commits > 16, then squash older commits
+# create package-listing
+MODE_BUILD=gitLsTree shRunScreenCapture shGitLsTree || return $?
+# create recent changelog of last 50 commits
+MODE_BUILD=gitLog shRunScreenCapture git log -50 --pretty="%ai\u000a%B" || return $?
+# upload build-artifacts to github, and if number of commits > 16, then squash older commits
 COMMIT_LIMIT=16 shBuildGithubUpload || exit $?
-
-# exit with $EXIT_CODE
 exit $EXIT_CODE
 ```
