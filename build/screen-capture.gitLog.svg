@@ -1,7 +1,7 @@
 <svg height="2958" width="720" xmlns="http://www.w3.org/2000/svg">
 <rect height="2958" fill="#555" width="720"></rect>
 <text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
-<tspan x="10" y="26">2015-08-13 01:13:59 +0800</tspan>
+<tspan x="10" y="26">2015-08-13 01:14:33 +0800</tspan>
 <tspan x="10" y="42">- npm publish 2015.8.1</tspan>
 <tspan x="10" y="58">- replace some screen-captures with svg</tspan>
 <tspan x="10" y="74"></tspan>
