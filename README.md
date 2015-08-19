@@ -2,7 +2,7 @@ phantomjs-lite
 ==============
 minimal npm installer for phantomjs and slimerjs with zero npm-dependencies
 
-[![NPM](https://img.shields.io/npm/v/node-phantomjs-lite.svg?style=flat-square)](https://www.npmjs.org/package/node-phantomjs-lite)
+[![NPM](https://img.shields.io/npm/v/phantomjs-lite.svg?style=flat-square)](https://www.npmjs.org/package/phantomjs-lite)
 
 
 
@@ -34,6 +34,8 @@ minimal npm installer for phantomjs and slimerjs with zero npm-dependencies
 
 # documentation
 - requires unzip to be installed on os
+- installs phantomjs@1.9.8
+- installs slimerjs@0.9.6
 
 
 
@@ -160,21 +162,22 @@ $(./index.js $ARG0 eval 'console.log(\"hello\"); phantom.exit();') = 'hello' \
 printf \"passed\n\" || exit $?; \
 done"
     },
-    "version": "2015.8.1"
+    "version": "2015.8.2"
 }
 ```
 
 
 
 # todo
-- upgrade to slimerjs@0.9.6
+- add codeship.io build
+- upgrade to phantomjs@2.x
 - none
 
 
 
-# change since 66e473e4
-- npm publish 2015.8.1
-- replace some screen-captures with svg
+# change since fb22ca38
+- npm publish 2015.8.2
+- upgrade to slimerjs@0.9.6
 - none
 
 
@@ -214,9 +217,9 @@ shBuild
 # save exit-code
 EXIT_CODE=$?
 # create package-listing
-MODE_BUILD=gitLsTree shRunScreenCapture shGitLsTree || return $?
+MODE_BUILD=gitLsTree shRunScreenCapture shGitLsTree || exit $?
 # create recent changelog of last 50 commits
-MODE_BUILD=gitLog shRunScreenCapture git log -50 --pretty="%ai\u000a%B" || return $?
+MODE_BUILD=gitLog shRunScreenCapture git log -50 --pretty="%ai\u000a%B" || exit $?
 # upload build-artifacts to github, and if number of commits > 16, then squash older commits
 COMMIT_LIMIT=16 shBuildGithubUpload || exit $?
 exit $EXIT_CODE
