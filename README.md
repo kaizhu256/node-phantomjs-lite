@@ -2,7 +2,7 @@ phantomjs-lite
 ==============
 minimal npm installer for phantomjs and slimerjs with zero npm-dependencies
 
-[![NPM](https://img.shields.io/npm/v/phantomjs-lite.svg?style=flat-square)](https://www.npmjs.org/package/phantomjs-lite)
+[![NPM](https://img.shields.io/npm/v/phantomjs-lite.svg?style=flat-square)](https://www.npmjs.org/package/phantomjs-lite) [![NPM](https://img.shields.io/npm/dm/phantomjs-lite.svg?style=flat-square)](https://www.npmjs.org/package/phantomjs-lite)
 
 
 
@@ -48,6 +48,7 @@ minimal npm installer for phantomjs and slimerjs with zero npm-dependencies
 
 ```shell
 # example.sh
+
 # this shell script will
     # npm install phantomjs-lite
     # screen-capture http://phantomjs.org/screen-capture.html
@@ -193,6 +194,7 @@ done"
 
 ```shell
 # build.sh
+
 # this shell script will run the build for this package
 
 shBuild() {
