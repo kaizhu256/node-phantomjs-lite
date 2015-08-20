@@ -12,7 +12,6 @@ minimal npm installer for phantomjs and slimerjs with zero npm-dependencies
 
 
 # build-status [![travis-ci.org build-status](https://api.travis-ci.org/kaizhu256/node-phantomjs-lite.svg)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
-
 | git-branch : | [master](https://github.com/kaizhu256/node-phantomjs-lite/tree/master) | [beta](https://github.com/kaizhu256/node-phantomjs-lite/tree/beta) | [alpha](https://github.com/kaizhu256/node-phantomjs-lite/tree/alpha)|
 |--:|:--|:--|:--|
 | build-artifacts : | [![build-artifacts](https://kaizhu256.github.io/node-phantomjs-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-phantomjs-lite/tree/gh-pages/build..master..travis-ci.org) | [![build-artifacts](https://kaizhu256.github.io/node-phantomjs-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-phantomjs-lite/tree/gh-pages/build..beta..travis-ci.org) | [![build-artifacts](https://kaizhu256.github.io/node-phantomjs-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-phantomjs-lite/tree/gh-pages/build..alpha..travis-ci.org)|
@@ -33,20 +32,22 @@ minimal npm installer for phantomjs and slimerjs with zero npm-dependencies
 
 
 # documentation
-- requires unzip to be installed on os
-- installs phantomjs@1.9.8
-- installs slimerjs@0.9.6
+#### this package requires
+- darwin or linux os
+- unzip installed on os
+
+#### this package will install into node_modules the external programs
+- phantomjs@1.9.8
+- slimerjs@0.9.6
 
 
 
 # quickstart screen-capture example
-
 #### to run this example, follow the instruction in the script below
 - example.sh
 
 ```shell
 # example.sh
-
 # this shell script will
     # npm install phantomjs-lite
     # screen-capture http://phantomjs.org/screen-capture.html
@@ -130,7 +131,7 @@ shExampleSh
     "description": "minimal npm installer for phantomjs and slimerjs \
 with zero npm-dependencies",
     "devDependencies": {
-        "utility2": "^2015.8.3"
+        "utility2": "^2015.8.5"
     },
     "keywords": [
         "browser",
@@ -169,7 +170,7 @@ done"
 
 
 # todo
-- add codeship.io build
+- add codeship.com build
 - upgrade to phantomjs@2.x
 - none
 
@@ -192,7 +193,6 @@ done"
 
 ```shell
 # build.sh
-
 # this shell script will run the build for this package
 
 shBuild() {

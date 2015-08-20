@@ -7,7 +7,7 @@
     },
     "description": "minimal npm installer for phantomjs and slimerjs with zero npm-dependencies",
     "devDependencies": {
-        "utility2": "^2015.8.3"
+        "utility2": "^2015.8.5"
     },
     "keywords": [
         "browser",
