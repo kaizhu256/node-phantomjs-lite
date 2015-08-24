@@ -11,7 +11,7 @@ minimal npm installer for phantomjs and slimerjs with zero npm-dependencies
 
 
 
-# build-status [![travis-ci.org build-status](https://api.travis-ci.org/kaizhu256/node-phantomjs-lite.svg)](https://travis-ci.org/kaizhu256/node-phantomjs-lite)
+# build-status [![travis-ci.org build-status](https://api.travis-ci.org/kaizhu256/node-phantomjs-lite.svg)](https://travis-ci.org/kaizhu256/node-phantomjs-lite) ![codeship.com build-status](https://codeship.com/projects/86e950e0-2c8f-0133-3f9e-5e261d46a9ad/status)
 | git-branch : | [master](https://github.com/kaizhu256/node-phantomjs-lite/tree/master) | [beta](https://github.com/kaizhu256/node-phantomjs-lite/tree/beta) | [alpha](https://github.com/kaizhu256/node-phantomjs-lite/tree/alpha)|
 |--:|:--|:--|:--|
 | build-artifacts : | [![build-artifacts](https://kaizhu256.github.io/node-phantomjs-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-phantomjs-lite/tree/gh-pages/build..master..travis-ci.org) | [![build-artifacts](https://kaizhu256.github.io/node-phantomjs-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-phantomjs-lite/tree/gh-pages/build..beta..travis-ci.org) | [![build-artifacts](https://kaizhu256.github.io/node-phantomjs-lite/glyphicons_144_folder_open.png)](https://github.com/kaizhu256/node-phantomjs-lite/tree/gh-pages/build..alpha..travis-ci.org)|
